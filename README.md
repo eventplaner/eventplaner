@@ -1,0 +1,4 @@
+eventplaner
+===========
+
+Simple event planing
