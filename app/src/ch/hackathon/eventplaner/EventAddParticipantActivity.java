@@ -44,6 +44,7 @@ public class EventAddParticipantActivity extends Activity {
 		{
 			Participant newParticipant = new Participant(getApplicationContext());
 			newParticipant.setUser(user);
+			newParticipant.setUser_id(user.getId());
 			participantList.add(newParticipant);
 		}
 		
