@@ -14,7 +14,9 @@ app.use orm.express "mysql://root:root@localhost/eventplaning", {
     next()
   }
 
-app.listen 4000
+(require './controller/event')(router)
+(require './controller/user')(router)
 
-app.get '/', (req, res) ->
-  res.send 'hi'
+app.use '/api', router
+
+app.listen 4000
