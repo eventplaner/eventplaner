@@ -114,7 +114,6 @@ public class EventManager {
 		return 0;
 	}
 	
-	
 	public Boolean getCurrentUserstatusOfEvent(Event event) {
 		// TODO: Implement
 		return false;

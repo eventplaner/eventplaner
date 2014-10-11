@@ -65,7 +65,7 @@ public class ParticipantListViewAdapter extends BaseAdapter {
 				participantStatusImg.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_action_cancel));
 			}
 			else {
-				// TODO: Implement ? icon
+				participantStatusImg.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_action_help));
 			}
 		}
 		return convertView;

@@ -3,13 +3,14 @@ package ch.hackathon.eventplaner;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import ch.hackathon.eventplaner.data.Event;
+import ch.hackathon.eventplaner.logic.EventManager;
 
 public class MainListViewAdapter extends BaseAdapter {
 	private List<Event> eventlist;
@@ -56,8 +57,21 @@ public class MainListViewAdapter extends BaseAdapter {
 			// TODO: Print Date pretty
 			TextView eventtitle = (TextView) convertView.findViewById(R.id.eventTitleTextView);
 			TextView eventdate = (TextView) convertView.findViewById(R.id.eventDateTextView);
+			ImageView statusImage = (ImageView) convertView.findViewById(R.id.statusImage);
 			eventtitle.setText(eventToRender.getName());
 			eventdate.setText(eventToRender.getLocalisedStartDateTime(activity));
+			EventManager em = new EventManager();
+			Boolean ownStatus = em.getCurrentUserstatusOfEvent(eventToRender);
+			
+			if (Boolean.TRUE.equals(ownStatus)) {
+				statusImage.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_action_accept));
+			}
+			else if (Boolean.FALSE.equals(ownStatus)) {
+				statusImage.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_action_cancel));
+			}
+			else {
+				statusImage.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_action_help));
+			}
 		}
 		return convertView;
 	}
