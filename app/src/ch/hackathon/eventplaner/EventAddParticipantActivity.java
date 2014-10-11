@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -50,14 +49,13 @@ public class EventAddParticipantActivity extends Activity {
 		
 		ParticipantListViewAdapter pla = new ParticipantListViewAdapter(this, participantList);
 		usersListView.setAdapter(pla);
-		final Context currentContext = getApplicationContext();
 		usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				EventManager eventManager = new EventManager(getApplicationContext());
 				Participant participant = participantList.get(position);
-				participant.setEvent_id(position);
+				participant.setEvent_id(eventId);
 				eventManager.addParticipant(participant);
 				finish();
 			}

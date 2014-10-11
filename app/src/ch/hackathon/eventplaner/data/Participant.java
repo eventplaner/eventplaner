@@ -1,7 +1,5 @@
 package ch.hackathon.eventplaner.data;
 
-import java.util.Date;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,7 +39,14 @@ public class Participant {
 			e.printStackTrace();
 			return new User();
 		}
-		
+	}
+	
+	public Event getEvent() {
+		if (event != null) {
+			return event;
+		}
+		// TODO: Get Event from API
+		return null;
 	}
 	
 	public int getId() {

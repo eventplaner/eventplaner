@@ -3,7 +3,6 @@ package ch.hackathon.eventplaner;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -40,7 +39,6 @@ public class MainActivity extends Activity {
 		ListView uiListView = (ListView) findViewById(R.id.mainEventListView);
 		MainListViewAdapter mla = new MainListViewAdapter(this, eventlist);
 		uiListView.setAdapter(mla);
-		final Context currentContext = getApplicationContext();
 		uiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
