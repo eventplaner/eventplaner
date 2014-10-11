@@ -60,7 +60,7 @@ public class MainListViewAdapter extends BaseAdapter {
 			ImageView statusImage = (ImageView) convertView.findViewById(R.id.statusImage);
 			eventtitle.setText(eventToRender.getName());
 			eventdate.setText(eventToRender.getLocalisedStartDateTime(activity));
-			EventManager em = new EventManager();
+			EventManager em = new EventManager(activity.getApplicationContext());
 			Boolean ownStatus = em.getCurrentUserstatusOfEvent(eventToRender);
 			
 			if (Boolean.TRUE.equals(ownStatus)) {

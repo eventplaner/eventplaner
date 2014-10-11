@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 				+ currentuser.getName());
 
 		// Load events of the user
-		EventManager eventManager = new EventManager();
+		EventManager eventManager = new EventManager(getApplicationContext());
 		eventlist = eventManager.getEventsForMainPage();
 		ListView uiListView = (ListView) findViewById(R.id.mainEventListView);
 		MainListViewAdapter mla = new MainListViewAdapter(this, eventlist);

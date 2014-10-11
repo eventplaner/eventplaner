@@ -29,7 +29,7 @@ public class EventEditActivity extends Activity {
 		}
 
 		// Get selected Event
-		EventManager eventmanager = new EventManager();
+		EventManager eventmanager = new EventManager(getApplicationContext());
 		Bundle intentextras = getIntent().getExtras();
 		int selectedEventId = intentextras
 				.getInt(EventDetailActivity.EVENTEDIT_EXTRAS_KEY);
@@ -50,7 +50,7 @@ public class EventEditActivity extends Activity {
 			eventEndTimeButton.setText(selectedEvent.getLocalisedEndTime(getApplicationContext()));
 		}
 		else {
-			selectedEvent = new Event();
+			selectedEvent = new Event(getApplicationContext());
 		}
 		
 		Button saveButton = (Button) findViewById(R.id.edit_savebutton);
@@ -58,7 +58,7 @@ public class EventEditActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				EventManager eventManager = new EventManager();
+				EventManager eventManager = new EventManager(getApplicationContext());
 				TextView eventNameText = (TextView) findViewById(R.id.EventNameText);
 				Button eventStartDateButton = (Button) findViewById(R.id.StartDateButton);
 				Button eventStartTimeButton = (Button) findViewById(R.id.StartTimeButton);

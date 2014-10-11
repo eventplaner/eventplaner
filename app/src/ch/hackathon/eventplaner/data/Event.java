@@ -23,9 +23,14 @@ public class Event {
 	private Date changeDate;
 	private int createuser_id;
 	private List<Participant> participants;
+	private Context appcontext;
+	
+	public Event (Context context) {
+		appcontext = context;
+	}
 	
 	public List<Participant> getParticipants() {
-		EventManager em = new EventManager();
+		EventManager em = new EventManager(appcontext);
 		participants = em.getParticipantsOfEvent(this);
 		return participants;
 	}

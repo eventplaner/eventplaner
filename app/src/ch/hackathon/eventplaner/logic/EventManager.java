@@ -4,40 +4,56 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Context;
 import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.data.Participant;
 
 public class EventManager {
+	private Context context;
+	
+	public EventManager (Context appcontext) {
+		context = appcontext;
+	}
+	
 	public List<Event> getEventsForMainPage() {
 		List<Event> eventlist = new ArrayList<Event>();
 		
-		// TODO: Implement! (correctly)
-		Event dummyEvent1 = new Event();
-		dummyEvent1.setId(1);
-		dummyEvent1.setName("Hackathon Zürich");
-		dummyEvent1.setDescription("Great Hackathon");
-		dummyEvent1.setStart(new Date());
-		dummyEvent1.setEnd(new Date());
-		dummyEvent1.setPosition_latitude("47.3843963");
-		dummyEvent1.setPosition_longitude("8.5069717");
-		eventlist.add(dummyEvent1);
+		// Call the API to the the events
+		ApiConnector api = new ApiConnector();
+		JSONArray result = api.getJsonFromGet("/event", context);
 		
-		Event dummyEvent2 = new Event();
-		dummyEvent2.setName("Great Party");
-		dummyEvent2.setId(2);
-		dummyEvent2.setDescription("Great Partyyyy!!");
-		dummyEvent2.setStart(new Date());
-		dummyEvent2.setEnd(new Date());
-		dummyEvent2.setPosition_latitude("47.3843963");
-		dummyEvent2.setPosition_longitude("8.5069717");
-		eventlist.add(dummyEvent2);
+		for (int i = 0 ; i < result.length(); i++) {
+			try {
+				JSONObject jsonEvent = result.getJSONObject(i);
+				Event event = new Event(context);
+				event.setId(jsonEvent.getInt("id"));
+				event.setName(jsonEvent.getString("name"));
+				event.setDescription(jsonEvent.getString("description"));
+				// TODO: Parse date from json request
+				event.setStart(new Date());
+				event.setEnd(new Date());
+				event.setCreateDate(new Date());
+				event.setChangeDate(new Date());
+				event.setPosition_latitude(jsonEvent.getString("position_latitude"));
+				event.setPosition_longitude(jsonEvent.getString("position_longitude"));
+				event.setCreateuser_id(jsonEvent.getInt("createuser_id"));
+				eventlist.add(event);
+			} catch (JSONException e) {
+				// Just ignore it...
+			}
+		}
+		
 		return eventlist;
 	}
 	
 	public Event getEventById(int id) {
 		// TODO: Implement! (correctly)
 		if (id == 1) {
-			Event dummyEvent1 = new Event();
+			Event dummyEvent1 = new Event(context);
 			dummyEvent1.setId(1);
 			dummyEvent1.setName("Hackathon ZÃ¼rich");
 			dummyEvent1.setDescription("Great Hackathon");
@@ -48,7 +64,7 @@ public class EventManager {
 			return dummyEvent1;
 		}
 		else if (id == 2) {
-			Event dummyEvent2 = new Event();
+			Event dummyEvent2 = new Event(context);
 			dummyEvent2.setName("Great Party");
 			dummyEvent2.setId(2);
 			dummyEvent2.setDescription("Great Partyyyy!!");

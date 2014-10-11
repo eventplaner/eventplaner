@@ -30,7 +30,7 @@ public class EventDetailActivity extends Activity {
 		}
 
 		// Load selected Event
-		EventManager eventmanager = new EventManager();
+		EventManager eventmanager = new EventManager(getApplicationContext());
 		Bundle intentextras = getIntent().getExtras();
 		final int selectedEventId = intentextras
 				.getInt(MainActivity.EVENTDETAIL_EXTRAS_KEY);
