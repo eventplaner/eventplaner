@@ -25,7 +25,7 @@ public class Participant {
 			return user;
 		}
 		ApiConnector api = new ApiConnector();
-		JSONObject result = api.getJsonObjFromGet("/user/" + id, context);
+		JSONObject result = api.getJsonObjFromGet("/user/" + user_id, context);
 		try {
 			User user = new User();
 			user.setId(result.getInt("id"));
