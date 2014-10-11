@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import ch.hackathon.eventplaner.data.User;
+import ch.hackathon.eventplaner.logic.SessionManager;
 
 public class MainActivity extends Activity {
 
@@ -11,6 +14,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		// Load user
+		SessionManager sessionManager  = new SessionManager(getApplicationContext());
+		User currentuser = sessionManager.getUser();
+		TextView welcometext = (TextView) findViewById(R.id.textView1);
+		welcometext.setText(getString(R.string.welcome) + " " + currentuser.getName());
 	}
 
 	@Override
