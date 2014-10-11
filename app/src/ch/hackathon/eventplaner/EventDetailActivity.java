@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import ch.hackathon.eventplaner.data.Event;
@@ -79,7 +80,7 @@ public class EventDetailActivity extends Activity {
 		});
 		
 		//Status Change Accept
-		Button acceptButton = (Button) findViewById(R.id.acceptButton);
+		ImageButton acceptButton = (ImageButton) findViewById(R.id.acceptButton);
 		acceptButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -95,20 +96,20 @@ public class EventDetailActivity extends Activity {
 		});
 		
 		//Status Change Decline
-				Button declineButton = (Button) findViewById(R.id.declineButton);
-				acceptButton.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						User user = new User();
-						SessionManager session = new SessionManager(getApplicationContext());
-						
-						user = session.getUser();
-						
-						ApiConnector connector = new ApiConnector();
-						connector.getJsonArrayFromGet("/event/" + selectedEvent.getId() + "participant/" + user.getId() + "participate/false", getApplicationContext());
-					}
-				});
+		ImageButton declineButton = (ImageButton) findViewById(R.id.declineButton);
+		declineButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				User user = new User();
+				SessionManager session = new SessionManager(getApplicationContext());
+				
+				user = session.getUser();
+				
+				ApiConnector connector = new ApiConnector();
+				connector.getJsonArrayFromGet("/event/" + selectedEvent.getId() + "participant/" + user.getId() + "participate/false", getApplicationContext());
+			}
+		});
 		
 		// Set detail participant text (2 of 4 participants)
 		TextView detailParticipantText = (TextView) findViewById(R.id.detailParticipantsText);
