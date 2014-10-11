@@ -1,6 +1,10 @@
 package ch.hackathon.eventplaner.data;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import android.content.Context;
 
 /**
  * An Event from the API
@@ -77,5 +81,21 @@ public class Event {
 	}
 	public void setCreateuser_id(int createuser_id) {
 		this.createuser_id = createuser_id;
+	}
+	private String getLocalisedDateTime(Date date,Context context)
+	{
+		Format dateFormat = android.text.format.DateFormat.getDateFormat(context);
+		SimpleDateFormat sdf = new SimpleDateFormat(((SimpleDateFormat) dateFormat).toLocalizedPattern());
+		return sdf.format(date);
+	}
+	
+	public String getLocalisedStartDateTime(Context context)
+	{
+		return getLocalisedDateTime(start, context);
+	}
+	
+	public String getLocalisedEndDateTime(Context context)
+	{
+		return getLocalisedDateTime(end, context);
 	}
 }

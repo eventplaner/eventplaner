@@ -3,6 +3,7 @@ package ch.hackathon.eventplaner;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class MainListViewAdapter extends BaseAdapter {
 			TextView eventtitle = (TextView) convertView.findViewById(R.id.eventTitleTextView);
 			TextView eventdate = (TextView) convertView.findViewById(R.id.eventDateTextView);
 			eventtitle.setText(eventToRender.getName());
-			eventdate.setText(eventToRender.getStart().toGMTString());
+			eventdate.setText(eventToRender.getLocalisedStartDateTime(activity));
 		}
 		return convertView;
 	}

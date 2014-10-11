@@ -3,6 +3,7 @@ package ch.hackathon.eventplaner;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import ch.hackathon.eventplaner.logic.SessionManager;
 
 public class MainActivity extends Activity {
 	private List<Event> eventlist;
+	public static final String EVENTDETAIL_EXTRAS_KEY = "selectedEventId";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +38,12 @@ public class MainActivity extends Activity {
 		ListView uiListView = (ListView) findViewById(R.id.mainEventListView);
 		MainListViewAdapter mla = new MainListViewAdapter(this, eventlist);
 		uiListView.setAdapter(mla);
+		final Context currentCobntext = getApplicationContext();
 		uiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent detailView = new Intent(getApplicationContext(), EventDetailActivity.class);
-				detailView.putExtra("selectedEventId", eventlist.get(position).getId());
+				detailView.putExtra(EVENTDETAIL_EXTRAS_KEY, eventlist.get(position).getId());
 				startActivity(detailView);
 			}
 		});

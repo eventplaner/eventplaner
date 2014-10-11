@@ -8,69 +8,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ch.hackathon.eventplaner.EventDetailActivity" >
 
-    <EditText
-        android:id="@+id/MeetingNameText"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="170dp"
-        android:layout_marginLeft="30dp"
-        android:ems="10" >
+        android:orientation="vertical" >
 
-        <requestFocus />
-    </EditText>
+        <TextView
+            android:id="@+id/EventNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="EventName"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
 
-    <EditText
-        android:id="@+id/OrtText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/MeetingNameText"
-        android:layout_alignTop="@+id/MeetingNameText"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:inputType="textPostalAddress" />
+            <requestFocus />
+        </TextView>
 
-    <EditText
-        android:id="@+id/StartDateText"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="80dp"
-        android:layout_marginLeft="30dp"
-        android:ems="10"
-        android:inputType="date" 
-        android:layout_width="130dp"/>
+        <TextView
+            android:id="@+id/LocationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPostalAddress"
+            android:text="EventLocation" />
 
-    <EditText
-        android:id="@+id/StartTimeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/StartDateText"
-        android:layout_alignBottom="@+id/StartDateText"
-        android:layout_alignRight="@+id/OrtText"
-        android:layout_toRightOf="@+id/StartDateText"
-        android:ems="10"
-        android:inputType="time" />
+        <TextView
+            android:id="@+id/StartDateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:text="StartDate" />
 
-    <EditText
-        android:id="@+id/EndDateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/StartDateText"
-        android:layout_alignRight="@+id/StartDateText"
-        android:layout_below="@+id/StartTimeText"
-        android:ems="10"
-        android:inputType="date" />
-
-    <EditText
-        android:id="@+id/EndTimeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/EndDateText"
-        android:layout_alignBottom="@+id/EndDateText"
-        android:layout_alignLeft="@+id/StartTimeText"
-        android:layout_alignRight="@+id/StartTimeText"
-        android:ems="10"
-        android:inputType="time" />
+        <TextView
+            android:id="@+id/EndDateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:text="EndDate" />
+    </LinearLayout>
 
 </RelativeLayout>

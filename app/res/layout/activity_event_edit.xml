@@ -9,7 +9,7 @@
     tools:context="ch.hackathon.eventplaner.EventEditActivity" >
 
     <EditText
-        android:id="@+id/MeetingNameText"
+        android:id="@+id/EventNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -25,8 +25,8 @@
         android:id="@+id/StartDateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/MeetingNameText"
-        android:layout_alignTop="@+id/MeetingNameText"
+        android:layout_alignLeft="@+id/EventNameText"
+        android:layout_alignTop="@+id/EventNameText"
         android:layout_marginTop="46dp"
         android:background="@android:color/transparent"
         android:minWidth="120dp"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/StartDateButton"
-        android:layout_alignRight="@+id/MeetingNameText"
+        android:layout_alignRight="@+id/EventNameText"
         android:layout_toRightOf="@+id/StartDateButton"
         android:background="@android:color/transparent"
         android:text="StartTime" />
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/EndDateButton"
-        android:layout_alignRight="@+id/MeetingNameText"
+        android:layout_alignRight="@+id/EventNameText"
         android:layout_toRightOf="@+id/EndDateButton"
         android:background="@android:color/transparent"
         android:text="EndTime" />
