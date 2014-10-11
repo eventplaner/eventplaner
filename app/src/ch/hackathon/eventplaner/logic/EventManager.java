@@ -108,4 +108,10 @@ public class EventManager {
 		
 		return participants;
 	}
+	
+	
+	public Boolean getCurrentUserstatusOfEvent(Event event) {
+		// TODO: Implement
+		return false;
+	}
 }
