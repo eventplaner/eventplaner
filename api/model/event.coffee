@@ -12,4 +12,8 @@ module.exports = (db, next) ->
     changedate: Date,
     createuser_id: Number
   }
+
+  db.models.event.hasOne 'creator', db.models.person, { required: true }
+  db.models.participant.hasOne 'event', db.models.event, { required: true }
+
   next()
