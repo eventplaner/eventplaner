@@ -8,9 +8,58 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ch.hackathon.eventplaner.EventEditActivity" >
 
-    <TextView
+    <EditText
+        android:id="@+id/MeetingNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="170dp"
+        android:layout_marginLeft="30dp"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/StartDateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/MeetingNameText"
+        android:layout_alignTop="@+id/MeetingNameText"
+        android:layout_marginTop="46dp"
+        android:background="@android:color/transparent"
+        android:minWidth="120dp"
+        android:text="StartDate" />
+
+    <Button
+        android:id="@+id/StartTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/StartDateButton"
+        android:layout_alignRight="@+id/MeetingNameText"
+        android:layout_toRightOf="@+id/StartDateButton"
+        android:background="@android:color/transparent"
+        android:text="StartTime" />
+
+    <Button
+        android:id="@+id/EndDateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/StartDateButton"
+        android:layout_below="@+id/StartDateButton"
+        android:text="EndDate" 
+        android:background="@android:color/transparent"
+        android:minWidth="120dp"/>
+    
+    <Button
+        android:id="@+id/EndTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/EndDateButton"
+        android:layout_alignRight="@+id/MeetingNameText"
+        android:layout_toRightOf="@+id/EndDateButton"
+        android:background="@android:color/transparent"
+        android:text="EndTime" />
 
 </RelativeLayout>
