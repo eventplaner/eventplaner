@@ -1,5 +1,7 @@
 package ch.hackathon.eventplaner;
 
+import java.util.List;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import ch.hackathon.eventplaner.data.Event;
+import ch.hackathon.eventplaner.data.Participant;
 import ch.hackathon.eventplaner.logic.EventManager;
 
 public class EventDetailActivity extends Activity {
@@ -71,6 +74,18 @@ public class EventDetailActivity extends Activity {
 				startActivity(newParticipantIntent);
 			}
 		});
+		
+		// Set detail participant text (2 of 4 participants)
+		TextView detailParticipantText = (TextView) findViewById(R.id.detailParticipantsText);
+		List<Participant> participants = selectedEvent.getParticipants();
+		int goingPeople = 0;
+		for (Participant participant : participants) {
+			if (Boolean.TRUE.equals(participant.isStatus())) {
+				goingPeople++;
+			}
+		}
+		String participantText = goingPeople + " of " + participants.size() + "Participate";
+		detailParticipantText.setText(participantText);
 	}
 
 	@Override

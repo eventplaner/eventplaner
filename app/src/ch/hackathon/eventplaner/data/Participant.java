@@ -23,6 +23,9 @@ public class Participant {
 	}
 	
 	public User getUser() {
+		if (user != null) {
+			return user;
+		}
 		ApiConnector api = new ApiConnector();
 		JSONObject result = api.getJsonObjFromGet("/user/" + id, context);
 		try {
@@ -36,8 +39,9 @@ public class Participant {
 			return user;
 		} catch (JSONException e) {
 			e.printStackTrace();
+			return new User();
 		}
-		return null;
+		
 	}
 	
 	public int getId() {
