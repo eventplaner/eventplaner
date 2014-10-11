@@ -38,7 +38,7 @@ module.exports = (router) ->
   router.get '/event/:event_id/participants', (req, res) ->
     req.models.event.get req.params.event_id, (err, event) ->
       if err then res.send 500, err
-      unless event?
+      if event?
         event.getParticipant (err, participants) ->
           if err then res.send 500, err
           res.json participants
