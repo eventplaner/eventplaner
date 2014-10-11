@@ -11,7 +11,8 @@
     "coffee-script": "latest",
     "orm": "latest",
     "express": "latest",
-    "mysql": "latest"
+    "mysql": "latest",
+    "body-parser": "latest"
   },
   "scripts": {
     "start": "coffee -w app.coffee"
