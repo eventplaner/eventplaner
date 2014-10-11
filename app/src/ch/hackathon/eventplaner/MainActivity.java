@@ -3,9 +3,12 @@ package ch.hackathon.eventplaner;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import ch.hackathon.eventplaner.data.Event;
@@ -14,7 +17,8 @@ import ch.hackathon.eventplaner.logic.EventManager;
 import ch.hackathon.eventplaner.logic.SessionManager;
 
 public class MainActivity extends Activity {
-
+	private List<Event> eventlist;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,10 +32,18 @@ public class MainActivity extends Activity {
 	
 		// Load events of the user
 		EventManager eventManager  = new EventManager();
-		List<Event> eventlist = eventManager.getEventsForMainPage();
+		eventlist = eventManager.getEventsForMainPage();
 		ListView uiListView = (ListView) findViewById(R.id.mainEventListView);
 		MainListViewAdapter mla = new MainListViewAdapter(this, eventlist);
 		uiListView.setAdapter(mla);
+		uiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent detailView = new Intent(getApplicationContext(), EventDetailActivity.class);
+				detailView.putExtra("selectedEventId", eventlist.get(position).getId());
+				startActivity(detailView);
+			}
+		});
 	}
 
 	@Override
