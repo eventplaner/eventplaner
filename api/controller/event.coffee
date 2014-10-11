@@ -43,7 +43,7 @@ module.exports = (router) ->
           if err then res.send 500, err
           res.json participants
       else
-        res.json 204, { id: req.params.event_id, message: "No data" }
+        res.status(204).json { id: req.params.event_id, message: "No data" }
 
   router.get '/event/:event_id/participant/:id/add', (req, res) ->
     req.models.participant.create {
