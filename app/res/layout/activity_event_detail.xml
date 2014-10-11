@@ -15,21 +15,27 @@
         android:orientation="horizontal" >
 
         <TextView
-        android:id="@+id/EventNameText"
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="EventName"
-        android:textAppearance="?android:attr/textAppearanceLarge" >
+            android:id="@+id/EventNameText"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="EventName"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
 
         	<requestFocus />
     	</TextView>
 
-        <ImageView
-            android:id="@+id/imageView1"
+        <ImageButton
+            android:id="@+id/acceptButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_help" />
+            android:src="@drawable/ic_action_accept" />
+
+        <ImageButton
+            android:id="@+id/declineButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_cancel" />
         
     </LinearLayout>
     

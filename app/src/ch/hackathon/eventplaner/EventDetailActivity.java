@@ -17,7 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.data.Participant;
+import ch.hackathon.eventplaner.data.User;
+import ch.hackathon.eventplaner.logic.ApiConnector;
 import ch.hackathon.eventplaner.logic.EventManager;
+import ch.hackathon.eventplaner.logic.SessionManager;
 
 public class EventDetailActivity extends Activity {
 	private Event selectedEvent;
@@ -74,6 +77,38 @@ public class EventDetailActivity extends Activity {
 				startActivity(newParticipantIntent);
 			}
 		});
+		
+		//Status Change Accept
+		Button acceptButton = (Button) findViewById(R.id.acceptButton);
+		acceptButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				User user = new User();
+				SessionManager session = new SessionManager(getApplicationContext());
+				
+				user = session.getUser();
+				
+				ApiConnector connector = new ApiConnector();
+				connector.getJsonArrayFromGet("/event/" + selectedEvent.getId() + "participant/" + user.getId() + "participate/true", getApplicationContext());
+			}
+		});
+		
+		//Status Change Decline
+				Button declineButton = (Button) findViewById(R.id.declineButton);
+				acceptButton.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						User user = new User();
+						SessionManager session = new SessionManager(getApplicationContext());
+						
+						user = session.getUser();
+						
+						ApiConnector connector = new ApiConnector();
+						connector.getJsonArrayFromGet("/event/" + selectedEvent.getId() + "participant/" + user.getId() + "participate/false", getApplicationContext());
+					}
+				});
 		
 		// Set detail participant text (2 of 4 participants)
 		TextView detailParticipantText = (TextView) findViewById(R.id.detailParticipantsText);
