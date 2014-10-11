@@ -39,7 +39,6 @@ public class EventManager {
 				event.setId(jsonEvent.getInt("id"));
 				event.setName(jsonEvent.getString("name"));
 				event.setDescription(jsonEvent.getString("description"));
-				// TODO: Parse date from json request
 				String startDate = jsonEvent.getString("start");
 				String endDate = jsonEvent.getString("end");
 				String createdate = jsonEvent.getString("createdate");
@@ -67,22 +66,25 @@ public class EventManager {
 			event.setId(result.getInt("id"));
 			event.setName(result.getString("name"));
 			event.setDescription(result.getString("description"));
-			// TODO: Parse date from json request
-			event.setStart(new Date());
-			event.setEnd(new Date());
-			event.setCreateDate(new Date());
-			event.setChangeDate(new Date());
+			String startDate = result.getString("start");
+			String endDate = result.getString("end");
+			String createdate = result.getString("createdate");
+			String changeDate = result.getString("changeDate");
+			event.setStart(jsonParser(startDate));
+			event.setEnd(jsonParser(endDate));
+			event.setCreateDate(jsonParser(createdate));
+			event.setChangeDate(jsonParser(changeDate));
 			event.setPosition_latitude(result.getString("position_latitude"));
 			event.setPosition_longitude(result.getString("position_longitude"));
 			event.setCreateuser_id(result.getInt("createuser_id"));
 			return event;
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// Just ignore it ...
 		}
 		return null;
 	}
 	
+
 	/**
 	 * Saves changes of a event to the database / saves a new event
 	 * (if changedEvent.id == -1 -> new event)
@@ -95,15 +97,13 @@ public class EventManager {
 		postData.add(new BasicNameValuePair("id", String.valueOf(changedEvent.getId())));
 		postData.add(new BasicNameValuePair("name", changedEvent.getName()));
 		postData.add(new BasicNameValuePair("description", changedEvent.getDescription()));
-		// TODO: implement date correctly
-		postData.add(new BasicNameValuePair("start", "2014-10-11"));
-		postData.add(new BasicNameValuePair("end", "2014-10-11"));
-		postData.add(new BasicNameValuePair("createdate", "2014-10-11"));
-		postData.add(new BasicNameValuePair("changedate", "2014-10-11"));
+		postData.add(new BasicNameValuePair("start", changedEvent.getLocalisedStartDate(context)));
+		postData.add(new BasicNameValuePair("end", changedEvent.getLocalisedEndDate(context)));
+		postData.add(new BasicNameValuePair("createdate", changedEvent.getLocalisedCreateDate(context)));
+		postData.add(new BasicNameValuePair("changedate", changedEvent.getLocalisedChangeDate(context)));
 		
-		// TODO: Implement position correctly
-		postData.add(new BasicNameValuePair("position_latitude", "41.732498"));
-		postData.add(new BasicNameValuePair("position_longitude", "91287409"));
+		postData.add(new BasicNameValuePair("position_latitude", changedEvent.getPosition_latitude()));
+		postData.add(new BasicNameValuePair("position_longitude", changedEvent.getPosition_longitude()));
 		SessionManager sessionManager = new SessionManager(context);
 		postData.add(new BasicNameValuePair("createuser_id", String.valueOf(sessionManager.getUser().getId())));
 		
@@ -128,8 +128,7 @@ public class EventManager {
 				participants.add(participant);
 			}
 			catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// Just ignore it ...
 			}
 		}
 		return participants;
@@ -137,6 +136,8 @@ public class EventManager {
 	
 	public int addParticipant(Participant participant) {
 		//TODO: Implement with API
+		ApiConnector api = new ApiConnector();
+		JSONObject result = api.getJsonObjFromGet("/event/"+ participant.getEvent_id() + "/participant/" + participant.getId(), context);
 		return 0;
 	}
 	
