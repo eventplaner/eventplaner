@@ -16,4 +16,11 @@
         android:layout_alignParentTop="true"
         android:text="TextView" />
 
+    <ListView
+        android:id="@+id/mainEventListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp" >
+    </ListView>
+
 </RelativeLayout>
