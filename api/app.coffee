@@ -10,15 +10,18 @@ app.use orm.express "mysql://root:root@localhost/eventplaning", {
   define: (db, models, next) ->
 
     db.load './model/user', (err) ->
-      if err
-        throw err
+      if err then throw err
       models.user = db.models.user
       models.participant = db.models.participant
 
     db.load './model/event', (err) ->
-      if err
-        throw err
+      if err then throw err
       models.event = db.models.event
+
+    db.load './model/participant', (err) ->
+      if err then throw err
+      models.participant = db.models.participant
+      
     next()
   }
 

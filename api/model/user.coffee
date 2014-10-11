@@ -10,11 +10,4 @@ module.exports = (db, next) ->
     changedate: Date
   }
 
-  db.define 'participant', {
-    id: { type: 'number', key: true },
-    status: Boolean
-  }
-
-  db.models.participant.hasOne 'user', db.models.user, { required: true }
-
   next()

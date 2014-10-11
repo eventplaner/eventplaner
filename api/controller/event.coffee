@@ -31,16 +31,33 @@ module.exports = (router) ->
         res.json event
 
   router.get '/event/:id', (req, res) ->
-    res.send 'hi'
+    req.models.event.get req.params.id, (err, event) ->
+      if err then res.send err
+      res.json event
 
   router.get '/event/:event_id/participants', (req, res) ->
-    res.send 'hi'
+    req.models.event.get req.params.event_id, (err, event) ->
+      if err then res.send err
+      event.getParticipant (err, participants) ->
+        if err then res.send err
+        res.json participants
 
   router.get '/event/:event_id/participant/:id/add', (req, res) ->
-    res.send 'hi'
+    req.models.participant.create {
+      event_id: req.params.event_id,
+      user_id: req.params.id
+    }, (err, participant) ->
+      if err then res.send err
+      res.json participant
 
   router.get '/event/:event_id/participant/:id/remove', (req, res) ->
-    res.send 'hi'
+    req.models.participant.find({
+      event_id: req.params.event_id,
+      user_id: req.params.id
+    }).remove (err) ->
+      if err then res.send err
+      res.json {message: 'removed'}
+
 
   router.get '/event/:event_id/participant/:id/participate/true', (req, res) ->
     res.send 'hi'
