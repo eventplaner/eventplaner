@@ -25,6 +25,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EventsActivity"
+            android:label="@string/title_activity_events" >
+        </activity>
+        <activity
+            android:name=".EventDetailActivity"
+            android:label="@string/title_activity_event_detail" >
+        </activity>
+        <activity
+            android:name=".EventEditActivity"
+            android:label="@string/title_activity_event_edit" >
+        </activity>
+        <activity
+            android:name=".EventParticipantsActivity"
+            android:label="@string/title_activity_event_participants" >
+        </activity>
+        <activity
+            android:name=".EventAddParticipantActivity"
+            android:label="@string/title_activity_event_add_participant" >
+        </activity>
     </application>
 
 </manifest>
