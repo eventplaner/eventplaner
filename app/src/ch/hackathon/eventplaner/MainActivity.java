@@ -1,11 +1,16 @@
 package ch.hackathon.eventplaner;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
+import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.data.User;
+import ch.hackathon.eventplaner.logic.EventManager;
 import ch.hackathon.eventplaner.logic.SessionManager;
 
 public class MainActivity extends Activity {
@@ -20,6 +25,13 @@ public class MainActivity extends Activity {
 		User currentuser = sessionManager.getUser();
 		TextView welcometext = (TextView) findViewById(R.id.textView1);
 		welcometext.setText(getString(R.string.welcome) + " " + currentuser.getName());
+	
+		// Load events of the user
+		EventManager eventManager  = new EventManager();
+		List<Event> eventlist = eventManager.getEventsForMainPage();
+		ListView uiListView = (ListView) findViewById(R.id.mainEventListView);
+		MainListViewAdapter mla = new MainListViewAdapter(this, eventlist);
+		uiListView.setAdapter(mla);
 	}
 
 	@Override
