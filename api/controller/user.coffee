@@ -2,12 +2,12 @@ module.exports = (router) ->
 
   router.get '/user', (req, res) ->
     req.models.user.find {}, (err, user) ->
-      if err then res.send 500, err
+      if err then rest.status(500).send err
       res.json user
 
   router.get '/user/:id', (req, res) ->
     req.models.user.get req.params.id, (err, user) ->
-      if err then res.send 500, err
+      if err then rest.status(500).send err
       res.json user
 
   router.post '/user/save', (req, res) ->
@@ -21,13 +21,13 @@ module.exports = (router) ->
     }
     if req.body.id > 0
       req.models.user.get req.body.id, (err, user) ->
-        if err then res.send 500, err
+        if err then rest.status(500).send err
         user.save reqUser, (err, savedUser) ->
-          if err then res.send 500, err
+          if err then rest.status(500).send err
           res.json savedUser
     else
       req.models.user.create reqUser, (err, user) ->
-        if err then res.send 500, err
+        if err then rest.status(500).send err
         res.json user
 
 
