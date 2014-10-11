@@ -38,10 +38,6 @@
             android:label="@string/title_activity_event_edit" >
         </activity>
         <activity
-            android:name=".EventParticipantsActivity"
-            android:label="@string/title_activity_event_participants" >
-        </activity>
-        <activity
             android:name=".EventAddParticipantActivity"
             android:label="@string/title_activity_event_add_participant" >
         </activity>

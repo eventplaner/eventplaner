@@ -1,13 +1,17 @@
 package ch.hackathon.eventplaner;
 
+import java.util.Date;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.logic.EventManager;
 
@@ -45,6 +49,31 @@ public class EventEditActivity extends Activity {
 			eventEndDateButton.setText(selectedEvent.getLocalisedEndDate(getApplicationContext()));
 			eventEndTimeButton.setText(selectedEvent.getLocalisedEndTime(getApplicationContext()));
 		}
+		else {
+			selectedEvent = new Event();
+		}
+		
+		Button saveButton = (Button) findViewById(R.id.edit_savebutton);
+		saveButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				EventManager eventManager = new EventManager();
+				TextView eventNameText = (TextView) findViewById(R.id.EventNameText);
+				Button eventStartDateButton = (Button) findViewById(R.id.StartDateButton);
+				Button eventStartTimeButton = (Button) findViewById(R.id.StartTimeButton);
+				Button eventEndDateButton = (Button) findViewById(R.id.EndDateButton);
+				Button eventEndTimeButton = (Button) findViewById(R.id.EndTimeButton);
+				
+				selectedEvent.setName(eventNameText.getText().toString());
+				// TODO: Parse DATEs
+				selectedEvent.setStart(new Date());
+				selectedEvent.setEnd(new Date());
+				eventManager.saveEvent(selectedEvent);
+				Toast.makeText(getApplicationContext(), "Event saved!", Toast.LENGTH_SHORT).show();
+				finish();
+			}
+		});
 	}
 
 	@Override
