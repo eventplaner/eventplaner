@@ -82,20 +82,31 @@ public class Event {
 	public void setCreateuser_id(int createuser_id) {
 		this.createuser_id = createuser_id;
 	}
-	private String getLocalisedDateTime(Date date,Context context)
+	private String getLocalisedDate(Date date,Context context)
 	{
 		Format dateFormat = android.text.format.DateFormat.getDateFormat(context);
 		SimpleDateFormat sdf = new SimpleDateFormat(((SimpleDateFormat) dateFormat).toLocalizedPattern());
 		return sdf.format(date);
 	}
 	
+	private String getLocalisedTime(Date date, Context context)
+	{
+		Format timeFormat = android.text.format.DateFormat.getTimeFormat(context);
+		SimpleDateFormat sdf = new SimpleDateFormat(((SimpleDateFormat) timeFormat).toLocalizedPattern());
+		return sdf.format(date);
+	}
+	
 	public String getLocalisedStartDateTime(Context context)
 	{
-		return getLocalisedDateTime(start, context);
+		String date = getLocalisedDate(start, context);
+		String time = getLocalisedTime(start, context);
+		return String.format("%s %s", date,time);
 	}
 	
 	public String getLocalisedEndDateTime(Context context)
 	{
-		return getLocalisedDateTime(end, context);
+		String date = getLocalisedDate(end, context);
+		String time = getLocalisedTime(end, context);
+		return String.format("%s %s", date,time);
 	}
 }
