@@ -46,7 +46,7 @@ public class EventManager {
 			dummyEvent1.setPosition_longitude("8.5069717");
 			return dummyEvent1;
 		}
-		else {
+		else if (id == 2) {
 			Event dummyEvent2 = new Event();
 			dummyEvent2.setName("Great Party");
 			dummyEvent2.setId(2);
@@ -56,6 +56,9 @@ public class EventManager {
 			dummyEvent2.setPosition_latitude("47.3843963");
 			dummyEvent2.setPosition_longitude("8.5069717");
 			return dummyEvent2;
+		}
+		else {
+			return null;
 		}
 	}
 }

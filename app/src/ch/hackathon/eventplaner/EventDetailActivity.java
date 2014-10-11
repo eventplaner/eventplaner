@@ -13,6 +13,7 @@ import ch.hackathon.eventplaner.logic.EventManager;
 
 public class EventDetailActivity extends Activity {
 	private Event selectedEvent;
+	public static final String EVENTEDIT_EXTRAS_KEY = "selectedEventId";
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -57,6 +58,7 @@ public class EventDetailActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.action_edit:
 			Intent editIntent = new Intent(this, EventEditActivity.class);
+			editIntent.putExtra(EVENTEDIT_EXTRAS_KEY, selectedEvent.getId());
 			startActivity(editIntent);
 			break;
 		case android.R.id.home:

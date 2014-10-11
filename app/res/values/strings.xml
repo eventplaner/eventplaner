@@ -11,5 +11,6 @@
     <string name="title_activity_event_participants">Participants</string>
     <string name="title_activity_event_add_participant">Add new Participant</string>
     <string name="action_edit">Edit</string>
+    <string name="action_newEvent">New Event</string>
 
 </resources>

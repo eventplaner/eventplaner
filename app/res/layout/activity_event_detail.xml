@@ -1,53 +1,47 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ch.hackathon.eventplaner.EventDetailActivity" >
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <TextView
+        android:id="@+id/EventNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:ems="10"
+        android:text="EventName"
+        android:textAppearance="?android:attr/textAppearanceLarge" >
 
-        <TextView
-            android:id="@+id/EventNameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="EventName"
-            android:textAppearance="?android:attr/textAppearanceLarge" >
+        <requestFocus />
+    </TextView>
 
-            <requestFocus />
-        </TextView>
+    <TextView
+        android:id="@+id/LocationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:text="EventLocation" />
 
-        <TextView
-            android:id="@+id/LocationText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPostalAddress"
-            android:text="EventLocation" />
+    <TextView
+        android:id="@+id/StartDateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:text="StartDate" />
 
-        <TextView
-            android:id="@+id/StartDateText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
-            android:text="StartDate" />
+    <TextView
+        android:id="@+id/EndDateText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:text="EndDate" />
 
-        <TextView
-            android:id="@+id/EndDateText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="date"
-            android:text="EndDate" />
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

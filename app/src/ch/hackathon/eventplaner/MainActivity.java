@@ -20,33 +20,38 @@ import ch.hackathon.eventplaner.logic.SessionManager;
 public class MainActivity extends Activity {
 	private List<Event> eventlist;
 	public static final String EVENTDETAIL_EXTRAS_KEY = "selectedEventId";
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		// Load user
-		SessionManager sessionManager  = new SessionManager(getApplicationContext());
+		SessionManager sessionManager = new SessionManager(
+				getApplicationContext());
 		User currentuser = sessionManager.getUser();
 		TextView welcometext = (TextView) findViewById(R.id.textView1);
-		welcometext.setText(getString(R.string.welcome) + " " + currentuser.getName());
-	
+		welcometext.setText(getString(R.string.welcome) + " "
+				+ currentuser.getName());
+
 		// Load events of the user
-		EventManager eventManager  = new EventManager();
+		EventManager eventManager = new EventManager();
 		eventlist = eventManager.getEventsForMainPage();
 		ListView uiListView = (ListView) findViewById(R.id.mainEventListView);
 		MainListViewAdapter mla = new MainListViewAdapter(this, eventlist);
 		uiListView.setAdapter(mla);
-		final Context currentCobntext = getApplicationContext();
-		uiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Intent detailView = new Intent(getApplicationContext(), EventDetailActivity.class);
-				detailView.putExtra(EVENTDETAIL_EXTRAS_KEY, eventlist.get(position).getId());
-				startActivity(detailView);
-			}
-		});
+		final Context currentContext = getApplicationContext();
+				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view,
+							int position, long id) {
+						Intent detailView = new Intent(getApplicationContext(),
+								EventDetailActivity.class);
+						detailView.putExtra(EVENTDETAIL_EXTRAS_KEY, eventlist
+								.get(position).getId());
+						startActivity(detailView);
+					}
+				});
 	}
 
 	@Override
@@ -61,8 +66,20 @@ public class MainActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (item.getItemId()) {
+		case R.id.action_newEvent:
+			Intent editIntent = new Intent(this, EventEditActivity.class);
+			editIntent.putExtra(EventDetailActivity.EVENTEDIT_EXTRAS_KEY, -1);
+			startActivity(editIntent);
+			break;
+		case android.R.id.home:
+			// This is called when the Home (Up) button is pressed in the Action
+			// Bar.
+			Intent parentActivityIntent = new Intent(this, MainActivity.class);
+			parentActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+					| Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(parentActivityIntent);
+			finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

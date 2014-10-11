@@ -1,16 +1,50 @@
 package ch.hackathon.eventplaner;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+import ch.hackathon.eventplaner.data.Event;
+import ch.hackathon.eventplaner.logic.EventManager;
 
 public class EventEditActivity extends Activity {
+	private Event selectedEvent;
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_edit);
+
+		if (android.os.Build.VERSION.SDK_INT >= 8) {
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+		}
+
+		// Get selected Event
+		EventManager eventmanager = new EventManager();
+		Bundle intentextras = getIntent().getExtras();
+		int selectedEventId = intentextras
+				.getInt(EventDetailActivity.EVENTEDIT_EXTRAS_KEY);
+		selectedEvent = eventmanager.getEventById(selectedEventId);
+		
+		if (selectedEvent  != null) {
+			// Put selected Event in the UI
+			TextView eventNameText = (TextView) findViewById(R.id.EventNameText);
+			Button eventStartDateButton = (Button) findViewById(R.id.StartDateButton);
+			Button eventStartTimeButton = (Button) findViewById(R.id.StartTimeButton);
+			Button eventEndDateButton = (Button) findViewById(R.id.EndDateButton);
+			Button eventEndTimeButton = (Button) findViewById(R.id.EndTimeButton);
+			eventNameText.setText(selectedEvent.getName());
+			eventStartDateButton.setText(selectedEvent.getStart().toGMTString());
+			eventStartTimeButton.setText(selectedEvent.getStart().toGMTString());
+			
+			eventEndDateButton.setText(selectedEvent.getEnd().toGMTString());
+			eventEndTimeButton.setText(selectedEvent.getEnd().toGMTString());
+		}
 	}
 
 	@Override
