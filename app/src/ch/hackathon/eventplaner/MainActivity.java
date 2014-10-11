@@ -41,17 +41,17 @@ public class MainActivity extends Activity {
 		MainListViewAdapter mla = new MainListViewAdapter(this, eventlist);
 		uiListView.setAdapter(mla);
 		final Context currentContext = getApplicationContext();
-				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						Intent detailView = new Intent(getApplicationContext(),
-								EventDetailActivity.class);
-						detailView.putExtra(EVENTDETAIL_EXTRAS_KEY, eventlist
-								.get(position).getId());
-						startActivity(detailView);
-					}
-				});
+		uiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent detailView = new Intent(getApplicationContext(),
+						EventDetailActivity.class);
+				detailView.putExtra(EVENTDETAIL_EXTRAS_KEY, eventlist
+						.get(position).getId());
+				startActivity(detailView);
+			}
+		});
 	}
 
 	@Override
