@@ -45,7 +45,8 @@ module.exports = (router) ->
   router.get '/event/:event_id/participant/:id/add', (req, res) ->
     req.models.participant.create {
       event_id: req.params.event_id,
-      user_id: req.params.id
+      user_id: req.params.id,
+      status: undefined
     }, (err, participant) ->
       if err then res.send err
       res.json participant
@@ -59,8 +60,15 @@ module.exports = (router) ->
       res.json {message: 'removed'}
 
 
-  router.get '/event/:event_id/participant/:id/participate/true', (req, res) ->
-    res.send 'hi'
+  router.get '/event/:event_id/participant/:id/participate/:value', (req, res) ->
+    participants = []
+    req.models.participant.find({
+      event_id: req.params.event_id,
+      user_id: req.params.id
+    }).each (participant) ->
+      participant.status = (req.param.value is true)
+      participants.push participant
+    .save (err, participant) ->
+      if err then res.send err
 
-  router.get '/event/:event_id/participant/:id/participate/false', (req, res) ->
-    res.send 'hi'
+    res.json participants
