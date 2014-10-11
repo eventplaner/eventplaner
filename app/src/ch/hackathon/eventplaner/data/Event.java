@@ -142,4 +142,14 @@ public class Event {
 	{
 		return getLocalisedTime(end, context);
 	}
+	
+	public String getLocalisedCreateDate(Context context)
+	{
+		return getLocalisedDate(createDate, context);
+	}
+	
+	public String getLocalisedChangeDate(Context context)
+	{
+		return getLocalisedDate(changeDate, context);
+	}
 }
