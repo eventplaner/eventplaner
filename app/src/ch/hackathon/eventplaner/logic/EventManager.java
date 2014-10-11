@@ -5,16 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.format.DateFormat;
 import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.data.Participant;
 
@@ -107,8 +105,7 @@ public class EventManager {
 		SessionManager sessionManager = new SessionManager(context);
 		postData.add(new BasicNameValuePair("createuser_id", String.valueOf(sessionManager.getUser().getId())));
 		
-		// TODO: Implement the other fields
-		HttpResponse result = api.sendPostRequest("/event/save", postData, context);
+		api.sendPostRequest("/event/save", postData, context);
 		// TODO: Implement error checking....
 		return 0;
 	}
@@ -137,7 +134,7 @@ public class EventManager {
 	public int addParticipant(Participant participant) {
 		//TODO: Implement with API
 		ApiConnector api = new ApiConnector();
-		JSONObject result = api.getJsonObjFromGet("/event/"+ participant.getEvent_id() + "/participant/" + participant.getUser_id() + "/add", context);
+		api.getJsonObjFromGet("/event/"+ participant.getEvent_id() + "/participant/" + participant.getUser_id() + "/add", context);
 		return 0;
 	}
 	
@@ -146,6 +143,7 @@ public class EventManager {
 		return false;
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	public Date jsonParser(String jsonDate)
 	{
 		String date = jsonDate.substring(0, 9);
