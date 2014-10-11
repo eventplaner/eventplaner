@@ -39,11 +39,11 @@ public class EventEditActivity extends Activity {
 			Button eventEndDateButton = (Button) findViewById(R.id.EndDateButton);
 			Button eventEndTimeButton = (Button) findViewById(R.id.EndTimeButton);
 			eventNameText.setText(selectedEvent.getName());
-			eventStartDateButton.setText(selectedEvent.getStart().toGMTString());
-			eventStartTimeButton.setText(selectedEvent.getStart().toGMTString());
+			eventStartDateButton.setText(selectedEvent.getLocalisedStartDate(getApplicationContext()));
+			eventStartTimeButton.setText(selectedEvent.getLocalisedStartTime(getApplicationContext()));
 			
-			eventEndDateButton.setText(selectedEvent.getEnd().toGMTString());
-			eventEndTimeButton.setText(selectedEvent.getEnd().toGMTString());
+			eventEndDateButton.setText(selectedEvent.getLocalisedEndDate(getApplicationContext()));
+			eventEndTimeButton.setText(selectedEvent.getLocalisedEndTime(getApplicationContext()));
 		}
 	}
 

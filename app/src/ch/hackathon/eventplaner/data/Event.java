@@ -109,4 +109,24 @@ public class Event {
 		String time = getLocalisedTime(end, context);
 		return String.format("%s %s", date,time);
 	}
+	
+	public String getLocalisedStartDate(Context context)
+	{
+		return getLocalisedDate(start, context);
+	}
+	
+	public String getLocalisedStartTime(Context context)
+	{
+		return getLocalisedTime(start, context);
+	}
+	
+	public String getLocalisedEndDate(Context context)
+	{
+		return getLocalisedDate(end, context);
+	}
+	
+	public String getLocalisedEndTime(Context context)
+	{
+		return getLocalisedTime(end, context);
+	}
 }

@@ -39,8 +39,8 @@ public class EventDetailActivity extends Activity {
 		eventNameText.setText(selectedEvent.getName());
 		eventLocationText.setText(selectedEvent.getPosition_longitude() + "; "
 				+ selectedEvent.getPosition_latitude());
-		eventStartDateText.setText(selectedEvent.getStart().toGMTString());
-		eventEndDateText.setText(selectedEvent.getEnd().toGMTString());
+		eventStartDateText.setText(selectedEvent.getLocalisedStartDateTime(getApplicationContext()));
+		eventEndDateText.setText(selectedEvent.getLocalisedEndDateTime(getApplicationContext()));
 	}
 
 	@Override
