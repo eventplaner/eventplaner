@@ -137,7 +137,7 @@ public class EventManager {
 	public int addParticipant(Participant participant) {
 		//TODO: Implement with API
 		ApiConnector api = new ApiConnector();
-		JSONObject result = api.getJsonObjFromGet("/event/"+ participant.getEvent_id() + "/participant/" + participant.getId(), context);
+		JSONObject result = api.getJsonObjFromGet("/event/"+ participant.getEvent_id() + "/participant/" + participant.getUser_id() + "/add", context);
 		return 0;
 	}
 	
