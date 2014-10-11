@@ -61,4 +61,16 @@ public class EventManager {
 			return null;
 		}
 	}
+	
+	/**
+	 * Saves changes of a event to the database / saves a new event
+	 * (if changedEvent.id == -1 -> new event)
+	 * @param changedEvent
+	 * @return error code (0 if everything works fine)
+	 */
+	public int saveEvent (Event changedEvent) {
+		// TODO: Implement!!
+		System.out.println("EVENT SAVED: " + changedEvent.getName());
+		return 0;
+	}
 }

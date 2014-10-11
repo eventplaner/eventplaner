@@ -10,7 +10,7 @@ import android.content.Context;
  * An Event from the API
  */
 public class Event {
-	private int id;
+	private int id = -1;
 	private String name;
 	private String description;
 	private Date start;
