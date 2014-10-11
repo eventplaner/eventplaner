@@ -16,6 +16,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.os.StrictMode;
@@ -63,7 +64,7 @@ public class ApiConnector {
 		}
 	}
 	
-	public JSONArray getJsonFromGet (String path, Context context) {
+	public JSONArray getJsonArrayFromGet (String path, Context context) {
 		HttpResponse response = sendGetRequest(path, context);
 		if (response == null) {
 			return null;
@@ -73,6 +74,29 @@ public class ApiConnector {
 		try {
 			responseString = EntityUtils.toString(entity, "UTF-8");
 			return new JSONArray(responseString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public JSONObject getJsonObjFromGet (String path, Context context) {
+		HttpResponse response = sendGetRequest(path, context);
+		if (response == null) {
+			return null;
+		}
+		HttpEntity entity = response.getEntity();
+		String responseString = "";
+		try {
+			responseString = EntityUtils.toString(entity, "UTF-8");
+			return new JSONObject(responseString);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

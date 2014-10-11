@@ -61,7 +61,6 @@ public class EventAddParticipantActivity extends Activity {
 				finish();
 			}
 		});
-		
 	}
 
 	@Override
