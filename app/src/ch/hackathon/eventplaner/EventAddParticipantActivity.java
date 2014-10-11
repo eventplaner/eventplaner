@@ -54,14 +54,13 @@ public class EventAddParticipantActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				EventManager eventManager = new EventManager();
+				EventManager eventManager = new EventManager(getApplicationContext());
 				Participant participant = participantList.get(position);
 				participant.setEvent_id(position);
 				eventManager.addParticipant(participant);
 				finish();
 			}
 		});
-		
 	}
 
 	@Override
