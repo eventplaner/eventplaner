@@ -21,7 +21,7 @@ app.use orm.express "mysql://root:root@localhost/eventplaning", {
     db.load './model/participant', (err) ->
       if err then throw err
       models.participant = db.models.participant
-      
+
     next()
   }
 
@@ -30,3 +30,6 @@ app.use orm.express "mysql://root:root@localhost/eventplaning", {
 
 app.use '/api', router
 app.listen 4000
+
+process.on 'uncaughtException', (err) ->
+  console.log err

@@ -2,7 +2,7 @@ module.exports = (router) ->
 
   router.get '/event', (req, res) ->
     req.models.event.find {}, (err, events) ->
-      if err then res.send err
+      if err then res.send 500, err
       res.json events
 
   router.post '/event/save', (req, res) ->
@@ -21,26 +21,29 @@ module.exports = (router) ->
 
     if req.body.id > 0
       req.models.event.get req.body.id, (err, event) ->
-        if err then res.send err
+        if err then res.send 500, err
         event.save reqEvent, (err, savedEvent) ->
-          if err then res.send err
+          if err then res.send 500, err
           res.json savedEvent
     else
       req.models.event.create reqEvent, (err, event) ->
-        if err then res.send err
+        if err then res.send 500, err
         res.json event
 
   router.get '/event/:id', (req, res) ->
     req.models.event.get req.params.id, (err, event) ->
-      if err then res.send err
+      if err then res.send 500, err
       res.json event
 
   router.get '/event/:event_id/participants', (req, res) ->
     req.models.event.get req.params.event_id, (err, event) ->
-      if err then res.send err
-      event.getParticipant (err, participants) ->
-        if err then res.send err
-        res.json participants
+      if err then res.send 500, err
+      unless event?
+        event.getParticipant (err, participants) ->
+          if err then res.send 500, err
+          res.json participants
+      else
+        res.json 204, { id: req.params.event_id, message: "No data" }
 
   router.get '/event/:event_id/participant/:id/add', (req, res) ->
     req.models.participant.create {
@@ -48,7 +51,7 @@ module.exports = (router) ->
       user_id: req.params.id,
       status: undefined
     }, (err, participant) ->
-      if err then res.send err
+      if err then res.send 500, err
       res.json participant
 
   router.get '/event/:event_id/participant/:id/remove', (req, res) ->
@@ -56,7 +59,7 @@ module.exports = (router) ->
       event_id: req.params.event_id,
       user_id: req.params.id
     }).remove (err) ->
-      if err then res.send err
+      if err then res.send 500, err
       res.json {message: 'removed'}
 
 
@@ -69,6 +72,6 @@ module.exports = (router) ->
       participant.status = (req.param.value is true)
       participants.push participant
     .save (err, participant) ->
-      if err then res.send err
+      if err then res.send 500, err
 
     res.json participants
