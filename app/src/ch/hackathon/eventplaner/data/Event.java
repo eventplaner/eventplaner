@@ -3,7 +3,9 @@ package ch.hackathon.eventplaner.data;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import ch.hackathon.eventplaner.logic.EventManager;
 import android.content.Context;
 
 /**
@@ -20,7 +22,13 @@ public class Event {
 	private Date createDate;
 	private Date changeDate;
 	private int createuser_id;
+	private List<Participant> participants;
 	
+	public List<Participant> getParticipants() {
+		EventManager em = new EventManager();
+		participants = em.getParticipantsOfEvent(this);
+		return participants;
+	}
 	
 	public int getId() {
 		return id;

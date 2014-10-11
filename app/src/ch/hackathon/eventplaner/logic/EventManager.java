@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import ch.hackathon.eventplaner.data.Event;
+import ch.hackathon.eventplaner.data.Participant;
 
 public class EventManager {
 	public List<Event> getEventsForMainPage() {
@@ -72,5 +73,39 @@ public class EventManager {
 		// TODO: Implement!!
 		System.out.println("EVENT SAVED: " + changedEvent.getName());
 		return 0;
+	}
+	
+	public List<Participant> getParticipantsOfEvent(Event event) {
+		// TODO: Implement!!
+		List<Participant> participants = new ArrayList<Participant>();
+		Participant demo1 = new Participant();
+		demo1.setId(1);
+		demo1.setEvent_id(event.getId());
+		demo1.setUser_id(1);
+		demo1.setStatus(true);
+		participants.add(demo1);
+		
+		Participant demo2 = new Participant();
+		demo2.setId(2);
+		demo2.setEvent_id(event.getId());
+		demo2.setUser_id(2);
+		demo2.setStatus(true);
+		participants.add(demo2);
+		
+		Participant demo3 = new Participant();
+		demo3.setId(3);
+		demo3.setEvent_id(event.getId());
+		demo3.setUser_id(1);
+		demo3.setStatus(false);
+		participants.add(demo3);
+		
+		Participant demo4 = new Participant();
+		demo4.setId(4);
+		demo4.setEvent_id(event.getId());
+		demo4.setUser_id(2);
+		demo4.setStatus(true);
+		participants.add(demo4);
+		
+		return participants;
 	}
 }

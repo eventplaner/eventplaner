@@ -7,6 +7,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.logic.EventManager;
@@ -27,7 +32,7 @@ public class EventDetailActivity extends Activity {
 		// Load selected Event
 		EventManager eventmanager = new EventManager();
 		Bundle intentextras = getIntent().getExtras();
-		int selectedEventId = intentextras
+		final int selectedEventId = intentextras
 				.getInt(MainActivity.EVENTDETAIL_EXTRAS_KEY);
 		selectedEvent = eventmanager.getEventById(selectedEventId);
 
@@ -41,6 +46,31 @@ public class EventDetailActivity extends Activity {
 				+ selectedEvent.getPosition_latitude());
 		eventStartDateText.setText(selectedEvent.getLocalisedStartDateTime(getApplicationContext()));
 		eventEndDateText.setText(selectedEvent.getLocalisedEndDateTime(getApplicationContext()));
+	
+		// Fill the participants list
+		ListView participantList = (ListView) findViewById(R.id.detailsParticipantList);
+		ParticipantListViewAdapter plva = new ParticipantListViewAdapter(this, eventmanager.getParticipantsOfEvent(selectedEvent));
+		participantList.setAdapter(plva);
+		participantList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO: Implement something?
+			}
+		});
+		
+		// Add Participants Button
+		Button addParticipantButton = (Button) findViewById(R.id.detailsNewParticipantButton);
+		addParticipantButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent newParticipantIntent = new Intent(getApplicationContext(), EventAddParticipantActivity.class);
+				newParticipantIntent.putExtra(EVENTEDIT_EXTRAS_KEY, selectedEventId);
+				startActivity(newParticipantIntent);
+			}
+		});
 	}
 
 	@Override

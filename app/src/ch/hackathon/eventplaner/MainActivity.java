@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 		SessionManager sessionManager = new SessionManager(
 				getApplicationContext());
 		User currentuser = sessionManager.getUser();
-		TextView welcometext = (TextView) findViewById(R.id.textView1);
+		TextView welcometext = (TextView) findViewById(R.id.detailParticipantsText);
 		welcometext.setText(getString(R.string.welcome) + " "
 				+ currentuser.getName());
 

@@ -55,4 +55,35 @@
         android:inputType="date"
         android:text="EndDate" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp" >
+
+        <Button
+            android:id="@+id/detailsNewParticipantButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="+" />
+
+        <TextView
+            android:id="@+id/detailParticipantsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/detailsNewParticipantButton"
+            android:layout_alignBottom="@+id/detailsNewParticipantButton"
+            android:layout_alignParentLeft="true"
+            android:text="11 / 12 Participants"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/detailsParticipantList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
 </LinearLayout>
