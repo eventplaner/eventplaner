@@ -14,7 +14,7 @@ public class EventManager {
 		// TODO: Implement! (correctly)
 		Event dummyEvent1 = new Event();
 		dummyEvent1.setId(1);
-		dummyEvent1.setName("Hackathon ZÃ¼rich");
+		dummyEvent1.setName("Hackathon Zürich");
 		dummyEvent1.setDescription("Great Hackathon");
 		dummyEvent1.setStart(new Date());
 		dummyEvent1.setEnd(new Date());
@@ -107,5 +107,16 @@ public class EventManager {
 		participants.add(demo4);
 		
 		return participants;
+	}
+	
+	public int addParticipant(Participant participant) {
+		//TODO: Implement with API
+		return 0;
+	}
+	
+	
+	public Boolean getCurrentUserstatusOfEvent(Event event) {
+		// TODO: Implement
+		return false;
 	}
 }
