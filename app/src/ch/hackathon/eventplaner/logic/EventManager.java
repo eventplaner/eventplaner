@@ -1,5 +1,7 @@
 package ch.hackathon.eventplaner.logic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.data.Participant;
 
@@ -34,10 +37,14 @@ public class EventManager {
 				event.setName(jsonEvent.getString("name"));
 				event.setDescription(jsonEvent.getString("description"));
 				// TODO: Parse date from json request
-				event.setStart(new Date());
-				event.setEnd(new Date());
-				event.setCreateDate(new Date());
-				event.setChangeDate(new Date());
+				String startDate = jsonEvent.getString("start");
+				String endDate = jsonEvent.getString("end");
+				String createdate = jsonEvent.getString("createdate");
+				String changeDate = jsonEvent.getString("changeDate");
+				event.setStart(jsonParser(startDate));
+				event.setEnd(jsonParser(endDate));
+				event.setCreateDate(jsonParser(createdate));
+				event.setChangeDate(jsonParser(changeDate));
 				event.setPosition_latitude(jsonEvent.getString("position_latitude"));
 				event.setPosition_longitude(jsonEvent.getString("position_longitude"));
 				event.setCreateuser_id(jsonEvent.getInt("createuser_id"));
@@ -133,5 +140,20 @@ public class EventManager {
 	public Boolean getCurrentUserstatusOfEvent(Event event) {
 		// TODO: Implement
 		return false;
+	}
+	
+	public Date jsonParser(String jsonDate)
+	{
+		String date = jsonDate.substring(0, 9);
+		String time = jsonDate.substring(11, 15);
+		String completeDate = String.format("%s %s", date, time);
+		SimpleDateFormat formatter = null;
+		formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		try {
+			Date newDate = (Date) formatter.parse(completeDate);
+			return newDate;
+		} catch (ParseException e) {
+			return null;
+		}
 	}
 }
