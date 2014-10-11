@@ -43,7 +43,7 @@ public class EventManager {
 				String startDate = jsonEvent.getString("start");
 				String endDate = jsonEvent.getString("end");
 				String createdate = jsonEvent.getString("createdate");
-				String changeDate = jsonEvent.getString("changeDate");
+				String changeDate = jsonEvent.getString("changedate");
 				event.setStart(jsonParser(startDate));
 				event.setEnd(jsonParser(endDate));
 				event.setCreateDate(jsonParser(createdate));
