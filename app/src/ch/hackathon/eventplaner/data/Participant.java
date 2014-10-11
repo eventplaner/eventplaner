@@ -50,6 +50,14 @@ public class Participant {
 		}
 	}
 	
+	public Event getEvent() {
+		if (event != null) {
+			return event;
+		}
+		// TODO: Get Event from API
+		return null;
+	}
+	
 	/**
 	 * @return The event of the participant
 	 */
