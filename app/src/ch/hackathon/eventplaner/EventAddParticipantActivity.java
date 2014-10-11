@@ -42,7 +42,7 @@ public class EventAddParticipantActivity extends Activity {
 		participantList = new ArrayList<Participant>();
 		for(User user : usersList)
 		{
-			Participant newParticipant = new Participant();
+			Participant newParticipant = new Participant(getApplicationContext());
 			newParticipant.setUser(user);
 			participantList.add(newParticipant);
 		}

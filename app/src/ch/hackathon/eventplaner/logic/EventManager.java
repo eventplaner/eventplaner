@@ -114,36 +114,24 @@ public class EventManager {
 	}
 	
 	public List<Participant> getParticipantsOfEvent(Event event) {
-		// TODO: Implement!!
 		List<Participant> participants = new ArrayList<Participant>();
-		Participant demo1 = new Participant();
-		demo1.setId(1);
-		demo1.setEvent_id(event.getId());
-		demo1.setUser_id(1);
-		demo1.setStatus(true);
-		participants.add(demo1);
+		ApiConnector api = new ApiConnector();
+		JSONArray result = api.getJsonArrayFromGet("/event/" + event.getId() + "/participants", context);
 		
-		Participant demo2 = new Participant();
-		demo2.setId(2);
-		demo2.setEvent_id(event.getId());
-		demo2.setUser_id(2);
-		demo2.setStatus(true);
-		participants.add(demo2);
-		
-		Participant demo3 = new Participant();
-		demo3.setId(3);
-		demo3.setEvent_id(event.getId());
-		demo3.setUser_id(1);
-		demo3.setStatus(false);
-		participants.add(demo3);
-		
-		Participant demo4 = new Participant();
-		demo4.setId(4);
-		demo4.setEvent_id(event.getId());
-		demo4.setUser_id(2);
-		demo4.setStatus(true);
-		participants.add(demo4);
-		
+		for (int i = 0 ; i < result.length(); i++) {
+			try {
+				JSONObject jsonParticipant = result.getJSONObject(i);
+				Participant participant = new Participant(context);
+				participant.setId(jsonParticipant.getInt("id"));
+				participant.setEvent_id(jsonParticipant.getInt("event_id"));
+				participant.setUser_id(jsonParticipant.getInt("user_id"));
+				participants.add(participant);
+			}
+			catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return participants;
 	}
 	
