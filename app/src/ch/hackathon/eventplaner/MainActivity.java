@@ -18,6 +18,7 @@ import ch.hackathon.eventplaner.logic.SessionManager;
 
 public class MainActivity extends Activity {
 	private List<Event> eventlist;
+	public static final String EVENTDETAIL_EXTRAS_KEY = "selectedEventId";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent detailView = new Intent(getApplicationContext(), EventDetailActivity.class);
-				detailView.putExtra("selectedEventId", eventlist.get(position).getId());
+				detailView.putExtra(EVENTDETAIL_EXTRAS_KEY, eventlist.get(position).getId());
 				startActivity(detailView);
 			}
 		});

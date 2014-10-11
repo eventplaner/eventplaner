@@ -12,6 +12,7 @@ public class EventManager {
 		
 		// TODO: Implement! (correctly)
 		Event dummyEvent1 = new Event();
+		dummyEvent1.setId(1);
 		dummyEvent1.setName("Hackathon Zürich");
 		dummyEvent1.setDescription("Great Hackathon");
 		dummyEvent1.setStart(new Date());
@@ -22,6 +23,7 @@ public class EventManager {
 		
 		Event dummyEvent2 = new Event();
 		dummyEvent2.setName("Great Party");
+		dummyEvent2.setId(2);
 		dummyEvent2.setDescription("Great Partyyyy!!");
 		dummyEvent2.setStart(new Date());
 		dummyEvent2.setEnd(new Date());
@@ -29,5 +31,31 @@ public class EventManager {
 		dummyEvent2.setPosition_longitude("8.5069717");
 		eventlist.add(dummyEvent2);
 		return eventlist;
+	}
+	
+	public Event getEventById(int id) {
+		// TODO: Implement! (correctly)
+		if (id == 1) {
+			Event dummyEvent1 = new Event();
+			dummyEvent1.setId(1);
+			dummyEvent1.setName("Hackathon Zürich");
+			dummyEvent1.setDescription("Great Hackathon");
+			dummyEvent1.setStart(new Date());
+			dummyEvent1.setEnd(new Date());
+			dummyEvent1.setPosition_latitude("47.3843963");
+			dummyEvent1.setPosition_longitude("8.5069717");
+			return dummyEvent1;
+		}
+		else {
+			Event dummyEvent2 = new Event();
+			dummyEvent2.setName("Great Party");
+			dummyEvent2.setId(2);
+			dummyEvent2.setDescription("Great Partyyyy!!");
+			dummyEvent2.setStart(new Date());
+			dummyEvent2.setEnd(new Date());
+			dummyEvent2.setPosition_latitude("47.3843963");
+			dummyEvent2.setPosition_longitude("8.5069717");
+			return dummyEvent2;
+		}
 	}
 }
