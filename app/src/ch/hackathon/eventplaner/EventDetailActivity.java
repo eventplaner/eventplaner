@@ -91,7 +91,7 @@ public class EventDetailActivity extends Activity {
 				user = session.getUser();
 				
 				ApiConnector connector = new ApiConnector();
-				connector.getJsonArrayFromGet("/event/" + selectedEvent.getId() + "participant/" + user.getId() + "participate/true", getApplicationContext());
+				connector.getJsonObjFromGet("/event/" + selectedEvent.getId() + "participant/" + user.getId() + "participate/true", getApplicationContext());
 			}
 		});
 		
