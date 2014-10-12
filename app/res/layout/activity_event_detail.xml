@@ -1,8 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -10,88 +10,125 @@
     tools:context="ch.hackathon.eventplaner.EventDetailActivity" >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/staticmap"
+            android:layout_marginBottom="30dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/acceptButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/round_shape"
+                android:gravity="end"
+                android:src="@drawable/ic_action_accept" />
+
+            <ImageButton
+                android:id="@+id/declineButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/acceptButton"
+                android:background="@drawable/round_shape"
+                android:gravity="end"
+                android:src="@drawable/ic_action_cancel" />
+
+            <TextView
+                android:id="@+id/EventNameText"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:ems="10"
+                android:gravity="start"
+                android:text="EventName"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/EventNameText"
-            android:layout_width="180dp"
+            android:id="@+id/LocationText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="EventName"
-            android:textAppearance="?android:attr/textAppearanceLarge" >
-
-        	<requestFocus />
-    	</TextView>
-
-        <ImageButton
-            android:id="@+id/acceptButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_accept" />
-
-        <ImageButton
-            android:id="@+id/declineButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_cancel" />
-        
-    </LinearLayout>
-    
-    <TextView
-        android:id="@+id/LocationText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPostalAddress"
-        android:text="EventLocation" />
-
-    <TextView
-        android:id="@+id/StartDateText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:text="StartDate" />
-
-    <TextView
-        android:id="@+id/EndDateText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        android:text="EndDate" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp" >
-
-        <Button
-            android:id="@+id/detailsNewParticipantButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="+" />
-
-        <TextView
-            android:id="@+id/detailParticipantsText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/detailsNewParticipantButton"
-            android:layout_alignBottom="@+id/detailsNewParticipantButton"
-            android:layout_alignParentLeft="true"
-            android:text="11 / 12 Participants"
+            android:inputType="textPostalAddress"
+            android:paddingBottom="4dp"
+            android:text="EventLocation"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/StartDateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:paddingBottom="4dp"
+            android:text="StartDate"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ListView
-        android:id="@+id/detailsParticipantList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        <TextView
+            android:id="@+id/EndDateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:paddingBottom="4dp"
+            android:text="EndDate"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp" >
+
+            <TextView
+                android:id="@+id/detailParticipantsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/detailsNewParticipantButton"
+                android:layout_alignBottom="@+id/detailsNewParticipantButton"
+                android:layout_alignParentLeft="true"
+                android:text="11 / 12 Participants"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/detailsNewParticipantButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/round_shape"
+                android:text="+" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/detailsParticipantList"
+            android:layout_width="match_parent"
+            android:layout_height="800dp" >
+        </ListView>
+    </LinearLayout>
+
+</ScrollView>

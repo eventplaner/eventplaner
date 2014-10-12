@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -55,9 +57,21 @@ public class EventDetailActivity extends Activity {
 		eventEndDateText.setText(selectedEvent.getLocalisedEndDateTime(getApplicationContext()));
 	
 		// Fill the participants list
+		List<Participant> participants =  eventmanager.getParticipantsOfEvent(selectedEvent);
 		ListView participantList = (ListView) findViewById(R.id.detailsParticipantList);
-		ParticipantListViewAdapter plva = new ParticipantListViewAdapter(this, eventmanager.getParticipantsOfEvent(selectedEvent));
+		ParticipantListViewAdapter plva = new ParticipantListViewAdapter(this, participants);
 		participantList.setAdapter(plva);
+		int totalHeight = 0;;
+	    for (int i = 0; i < participantList.getCount(); i++) {
+	        View listItem = plva.getView(i, null, participantList);
+	        listItem.measure(0, 0);
+	        totalHeight += listItem.getMeasuredHeight();
+	    }
+		
+		ViewGroup.LayoutParams params = participantList.getLayoutParams();
+	    params.height = totalHeight;
+	    participantList.setLayoutParams(params);
+	    participantList.requestLayout();
 		participantList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
@@ -113,7 +127,6 @@ public class EventDetailActivity extends Activity {
 		
 		// Set detail participant text (2 of 4 participants)
 		TextView detailParticipantText = (TextView) findViewById(R.id.detailParticipantsText);
-		List<Participant> participants = selectedEvent.getParticipants();
 		int goingPeople = 0;
 		for (Participant participant : participants) {
 			if (Boolean.TRUE.equals(participant.isStatus())) {
