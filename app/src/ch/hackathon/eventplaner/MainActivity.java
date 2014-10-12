@@ -26,12 +26,10 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		// Load user
-		SessionManager sessionManager = new SessionManager(
-				getApplicationContext());
+		SessionManager sessionManager = new SessionManager(getApplicationContext());
 		User currentuser = sessionManager.getUser();
 		TextView welcometext = (TextView) findViewById(R.id.detailParticipantsText);
-		welcometext.setText(getString(R.string.welcome) + " "
-				+ currentuser.getName());
+		welcometext.setText(getString(R.string.welcome) + " " + currentuser.getName());
 
 		// Load events of the user
 		EventManager eventManager = new EventManager(getApplicationContext());
@@ -41,12 +39,9 @@ public class MainActivity extends Activity {
 		uiListView.setAdapter(mla);
 		uiListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Intent detailView = new Intent(getApplicationContext(),
-						EventDetailActivity.class);
-				detailView.putExtra(EVENTDETAIL_EXTRAS_KEY, eventlist
-						.get(position).getId());
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent detailView = new Intent(getApplicationContext(),	EventDetailActivity.class);
+				detailView.putExtra(EVENTDETAIL_EXTRAS_KEY, eventlist.get(position).getId());
 				startActivity(detailView);
 			}
 		});

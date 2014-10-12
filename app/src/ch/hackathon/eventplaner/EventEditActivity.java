@@ -155,8 +155,5 @@ public class EventEditActivity extends Activity {
 		public void setDatafieldRessource (int ressourceId) {
 			datafieldRessource = ressourceId;
 		}
-		
-		
 	}
-
 }

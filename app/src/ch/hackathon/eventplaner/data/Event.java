@@ -25,15 +25,25 @@ public class Event {
 	private List<Participant> participants;
 	private Context appcontext;
 	
+	/**
+	 * Creates a new Event
+	 * @param context the appcontext
+	 */
 	public Event (Context context) {
 		appcontext = context;
 	}
 	
+	/**
+	 * @return list of all participants of an event
+	 */
 	public List<Participant> getParticipants() {
 		EventManager em = new EventManager(appcontext);
 		participants = em.getParticipantsOfEvent(this);
 		return participants;
 	}
+	
+	
+	// Getter/Setter
 	
 	public int getId() {
 		return id;
@@ -95,6 +105,13 @@ public class Event {
 	public void setCreateuser_id(int createuser_id) {
 		this.createuser_id = createuser_id;
 	}
+	
+	/**
+	 * Get the localised textrepresentation of a date
+	 * @param date the date to convert
+	 * @param context the appcontext
+	 * @return String in a cool format
+	 */
 	private String getLocalisedDate(Date date,Context context)
 	{
 		Format dateFormat = android.text.format.DateFormat.getDateFormat(context);
@@ -102,6 +119,12 @@ public class Event {
 		return sdf.format(date);
 	}
 	
+	/**
+	 * Get the localised textrepresentation of a time
+	 * @param date the dateobject with the time in it
+	 * @param context the appcontext
+	 * @returnString in a cool format
+	 */
 	private String getLocalisedTime(Date date, Context context)
 	{
 		Format timeFormat = android.text.format.DateFormat.getTimeFormat(context);
@@ -109,6 +132,11 @@ public class Event {
 		return sdf.format(date);
 	}
 	
+	/**
+	 * Get the localised String of the startdate (and time)
+	 * @param context the appcontext
+	 * @return Startdate as a String
+	 */
 	public String getLocalisedStartDateTime(Context context)
 	{
 		String date = getLocalisedDate(start, context);
@@ -116,6 +144,11 @@ public class Event {
 		return String.format("%s %s", date,time);
 	}
 	
+	/**
+	 * Get the localised String of the enddate (and time)
+	 * @param context the appcontext
+	 * @return Enddate as a String
+	 */
 	public String getLocalisedEndDateTime(Context context)
 	{
 		String date = getLocalisedDate(end, context);
@@ -123,6 +156,11 @@ public class Event {
 		return String.format("%s %s", date,time);
 	}
 	
+	/**
+	 * Get the localised Startdate (only date, no time)
+	 * @param context
+	 * @return Startdate as a nice looking String
+	 */
 	public String getLocalisedStartDate(Context context)
 	{
 		return getLocalisedDate(start, context);

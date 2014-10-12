@@ -26,8 +26,15 @@ import android.widget.Toast;
  * Interface to the API (on the server)
  */
 public class ApiConnector {
+	// Url where das API - Server is accsessible
 	private static final String baseurl = "http://jan-bucher.ch:4000/api";
 	
+	/**
+	 * Send a GET Request to the API - Server
+	 * @param path extra path to the API model
+	 * @param context the appcontext
+	 * @return the HTTPResponse from the API Server
+	 */
 	public HttpResponse sendGetRequest (String path, Context context) {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGetRequest = new HttpGet(baseurl + path);
@@ -48,6 +55,13 @@ public class ApiConnector {
 		}
 	}
 	
+	/**
+	 * Send a POST Request to the API - Server
+	 * @param path extra path to the API model
+	 * @param postData Data to send (via HTTP-POST) to the server
+	 * @param context the appcontext
+	 * @return
+	 */
 	public HttpResponse sendPostRequest (String path, List<NameValuePair> postData, Context context) {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpPost httpPostRequest = new HttpPost(baseurl + path);
@@ -64,6 +78,12 @@ public class ApiConnector {
 		}
 	}
 	
+	/**
+	 * Get a JSON-formatted Array from the API
+	 * @param path extra path to the API model
+	 * @param context the appcontext
+	 * @return json formatted array
+	 */
 	public JSONArray getJsonArrayFromGet (String path, Context context) {
 		HttpResponse response = sendGetRequest(path, context);
 		if (response == null) {
@@ -87,6 +107,12 @@ public class ApiConnector {
 		return null;
 	}
 	
+	/**
+	 * Get a JSON formatted Object from the API - Server
+	 * @param path extra path to the API model
+	 * @param context the appcontext
+	 * @return
+	 */
 	public JSONObject getJsonObjFromGet (String path, Context context) {
 		HttpResponse response = sendGetRequest(path, context);
 		if (response == null) {
