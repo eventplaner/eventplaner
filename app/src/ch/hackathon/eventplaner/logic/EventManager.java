@@ -201,13 +201,13 @@ public class EventManager {
 	 * @param newStatus
 	 * @return
 	 */
-	public int userSetStatus (Participant participant, boolean newStatus) {
-		ApiConnector connector = new ApiConnector();
+	public int userSetStatus (Participant participant) {
+		ApiConnector api = new ApiConnector();
 		String statusstring = "false";
-		if (newStatus) {
+		if (participant.isStatus()) {
 			statusstring = "true";
 		}
-		connector.getJsonObjFromGet("/event/" + participant.getEvent().getId() + "participant/" + participant.getUser_id() + "participate/" + statusstring, context);
+		api.getJsonObjFromGet("/event/" + participant.getEvent_id() + "/participant/" + participant.getUser_id() + "/participate/" + statusstring, context);
 		// TODO: Implement error handling
 		return 0;
 	}

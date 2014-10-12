@@ -99,13 +99,17 @@ public class EventDetailActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				User user = new User();
-				SessionManager session = new SessionManager(getApplicationContext());
-				
-				user = session.getUser();
-				
-				ApiConnector connector = new ApiConnector();
-				connector.getJsonObjFromGet("/event/" + selectedEvent.getId() + "participant/" + user.getId() + "participate/true", getApplicationContext());
+				EventManager eventmanager = new EventManager(getApplicationContext());
+				SessionManager session = new SessionManager(getApplicationContext()); 
+				Participant p = new Participant(getApplicationContext());
+				p.setEvent_id(selectedEvent.getId());
+				p.setUser_id(session.getUser().getId());
+				p.setStatus(true);
+				eventmanager.userSetStatus(p);
+				ImageButton acceptButton = (ImageButton) v;
+				acceptButton.setBackgroundResource(R.drawable.round_shape_good);
+				ImageButton declineButton = (ImageButton) findViewById(R.id.declineButton);
+				declineButton.setClickable(false);
 			}
 		});
 		
@@ -115,13 +119,17 @@ public class EventDetailActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				User user = new User();
-				SessionManager session = new SessionManager(getApplicationContext());
-				
-				user = session.getUser();
-				
-				ApiConnector connector = new ApiConnector();
-				connector.getJsonArrayFromGet("/event/" + selectedEvent.getId() + "participant/" + user.getId() + "participate/false", getApplicationContext());
+				EventManager eventmanager = new EventManager(getApplicationContext());
+				SessionManager session = new SessionManager(getApplicationContext()); 
+				Participant p = new Participant(getApplicationContext());
+				p.setEvent_id(selectedEvent.getId());
+				p.setUser_id(session.getUser().getId());
+				p.setStatus(false);
+				eventmanager.userSetStatus(p);
+				ImageButton declineButton = (ImageButton) v;
+				declineButton.setBackgroundResource(R.drawable.round_shape_bad);
+				ImageButton acceptButton = (ImageButton) findViewById(R.id.acceptButton);
+				acceptButton.setClickable(false);
 			}
 		});
 		
