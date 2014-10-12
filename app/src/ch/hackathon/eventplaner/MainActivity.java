@@ -25,12 +25,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		// Load user
-		SessionManager sessionManager = new SessionManager(getApplicationContext());
-		User currentuser = sessionManager.getUser();
-		TextView welcometext = (TextView) findViewById(R.id.detailParticipantsText);
-		welcometext.setText(getString(R.string.welcome) + " " + currentuser.getName());
-
 		// Load events of the user
 		EventManager eventManager = new EventManager(getApplicationContext());
 		eventlist = eventManager.getEventsForMainPage();

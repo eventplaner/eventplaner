@@ -24,7 +24,8 @@
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/staticmap"
+            android:layout_marginBottom="30dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -126,7 +127,7 @@
         <ListView
             android:id="@+id/detailsParticipantList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="800dp" >
         </ListView>
     </LinearLayout>
 
