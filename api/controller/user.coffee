@@ -1,15 +1,21 @@
 module.exports = (router) ->
 
+  # Gets all users
+  # @returns all users
   router.get '/user', (req, res) ->
     req.models.user.find {}, (err, user) ->
       if err then rest.status(500).send err
       res.json user
 
+  # Gets a user by its id
+  # @id {Number} The id of the user
   router.get '/user/:id', (req, res) ->
     req.models.user.get req.params.id, (err, user) ->
       if err then rest.status(500).send err
       res.json user
 
+  # Saves (creates or updates) the data of a User
+  # @returns The created or updated user
   router.post '/user/save', (req, res) ->
     reqUser = {
       name: req.body.name,
@@ -29,7 +35,6 @@ module.exports = (router) ->
       req.models.user.create reqUser, (err, user) ->
         if err then rest.status(500).send err
         res.json user
-
 
   router.get '/user/:id/friends', (req, res) ->
     res.send 'todo ...'

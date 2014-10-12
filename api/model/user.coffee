@@ -8,6 +8,6 @@ module.exports = (db, next) ->
     active: Boolean
     createdate: Date,
     changedate: Date
-  }
+  }, { cache: false }
 
   next()
