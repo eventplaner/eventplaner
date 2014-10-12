@@ -10,6 +10,6 @@ module.exports = (db, next) ->
     createdate: Date,
     changedate: Date,
     createuser_id: Number
-  }
-  
+  }, { cache: false }
+
   next()
