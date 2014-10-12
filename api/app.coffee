@@ -31,5 +31,5 @@ app.use orm.express "mysql://root:root@localhost/eventplaning", {
 app.use '/api', router
 app.listen 4000
 
-process.on 'uncaughtException', (err) ->
-  console.log err
+#process.on 'uncaughtException', (err) ->
+#  console.log err
