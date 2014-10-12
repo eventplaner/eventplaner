@@ -5,24 +5,36 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.data.Participant;
 
+/**
+ *  Handles interactions from the UI to the API
+ */
 public class EventManager {
-	private Context context;
+	private Context context;  // The appcontext 
 	
+	/**
+	 * Creates a new EventManager object
+	 * @param appcontext the appcontext
+	 */
 	public EventManager (Context appcontext) {
 		context = appcontext;
 	}
-
+	
+	/**
+	 * @return Events that will displayed on the mainpage (next events of the user)
+	 */
 	public List<Event> getEventsForMainPage() {
 		List<Event> eventlist = new ArrayList<Event>();
 		
@@ -56,6 +68,11 @@ public class EventManager {
 		return eventlist;
 	}
 	
+	/**
+	 * Get a specific event object by his unique ID from the API
+	 * @param id the ID of the Event
+	 * @return the eventobject
+	 */
 	public Event getEventById(int id) {
 		ApiConnector api = new ApiConnector();
 		JSONObject result = api.getJsonObjFromGet("/event/" + id, context);
@@ -110,6 +127,11 @@ public class EventManager {
 		return 0;
 	}
 	
+	/**
+	 * Get all participants of a specific event
+	 * @param the eventobject
+	 * @return list of all participants of a event
+	 */
 	public List<Participant> getParticipantsOfEvent(Event event) {
 		List<Participant> participants = new ArrayList<Participant>();
 		ApiConnector api = new ApiConnector();
@@ -131,6 +153,11 @@ public class EventManager {
 		return participants;
 	}
 	
+	/**
+	 * Add a new participant to an existing event
+	 * @param participant prepared participant (event_id & user_id already set)
+	 * @return ErrorCode or 0 if there is no error
+	 */
 	public int addParticipant(Participant participant) {
 		//TODO: Implement with API
 		ApiConnector api = new ApiConnector();
@@ -138,11 +165,20 @@ public class EventManager {
 		return 0;
 	}
 	
+	/**
+	 * Get the status of the current loged in user of an event (e.g. going/notgoing)
+	 * @param event the event 
+	 * @return TRUE if the user commes to the event
+	 */
 	public Boolean getCurrentUserstatusOfEvent(Event event) {
 		// TODO: Implement
 		return false;
 	}
 	
+	/**
+	 * Get the (java) date object of a given JSON Date string
+	 * @return Dateobject with the same date/time as the JSON date has
+	 */
 	@SuppressLint("SimpleDateFormat")
 	public Date jsonParser(String jsonDate)
 	{
@@ -157,5 +193,22 @@ public class EventManager {
 		} catch (ParseException e) {
 			return null;
 		}
+	}
+	
+	/**
+	 * User can accept or decline a event
+	 * @param participant (with event_id & user_id already set)
+	 * @param newStatus
+	 * @return
+	 */
+	public int userSetStatus (Participant participant, boolean newStatus) {
+		ApiConnector connector = new ApiConnector();
+		String statusstring = "false";
+		if (newStatus) {
+			statusstring = "true";
+		}
+		connector.getJsonObjFromGet("/event/" + participant.getEvent().getId() + "participant/" + participant.getUser_id() + "participate/" + statusstring, context);
+		// TODO: Implement error handling
+		return 0;
 	}
 }

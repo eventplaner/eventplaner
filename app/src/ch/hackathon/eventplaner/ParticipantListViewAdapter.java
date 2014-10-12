@@ -11,10 +11,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import ch.hackathon.eventplaner.data.Participant;
 
+/**
+ * Adapter for the participant list on the detail/addParticipant activity
+ */
 public class ParticipantListViewAdapter extends BaseAdapter {
 	private List<Participant> participantlist;
 	private Activity activity;
-
+	
+	/**
+	 * Create a new ParticipantListViewAdapter object
+	 * @param currentActivity the activity that will call this methode
+	 * @param participants a list of the participants tô display in the listview
+	 */
 	public ParticipantListViewAdapter(Activity currentActivity, List<Participant> participants) {
 		super();
 		activity = currentActivity;
@@ -47,6 +55,9 @@ public class ParticipantListViewAdapter extends BaseAdapter {
 
 	@SuppressLint("InflateParams")
 	@Override
+	/**
+	 *  Render one row of the MainListView
+	 */
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater layoutInflator = activity.getLayoutInflater();
 		Participant participantToRender = participantlist.get(position);
@@ -70,5 +81,4 @@ public class ParticipantListViewAdapter extends BaseAdapter {
 		}
 		return convertView;
 	}
-
 }
