@@ -61,7 +61,7 @@ module.exports = (router) ->
     req.models.participant.create {
       event_id: req.params.event_id,
       user_id: req.params.id,
-      status: undefined
+      status: null
     }, (err, participant) ->
       if err then rest.status(500).send err
       res.json participant
@@ -82,13 +82,16 @@ module.exports = (router) ->
   # @id {Number} The Id of the User who participates on the event
   # @value {Boolean} Wether the User wants to participate on a event
   router.get '/event/:event_id/participant/:id/participate/:value', (req, res) ->
-    participants = []
     req.models.participant.find({
       event_id: req.params.event_id,
       user_id: req.params.id
-    }).each (participant) ->
-      participant.status = (req.param.value is true)
-      participants.push participant
-    .save (err, participant) ->
-      if err then rest.status(500).send err
-    res.json participants
+    }).each((participant) ->
+      console.log (req.params.value is true)
+      console.log (typeof (req.params.value is true))
+      participant.status = (req.params.value is true)
+      #participants.push participant
+    ).save (err) ->
+      if err
+        rest.status(500).send err
+      else
+        res.json { message: "saved ..." }
