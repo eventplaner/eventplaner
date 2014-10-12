@@ -1,7 +1,6 @@
 package ch.hackathon.eventplaner.logic;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -9,24 +8,35 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
-import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.data.User;
 
 /**
  * Handle User sessions
  */
 public class SessionManager {
-	private Context currentContext;
+	private Context currentContext; // Appcontext
 	
+	/**
+	 * Create a new Sessionmanager instance
+	 * @param context the appcontext
+	 */
 	public SessionManager(Context context) {
 		currentContext = context;
 	}
 	
+	/**
+	 * Checks if the user in front of the devices is logged in on the API - Server
+	 * @return TRUE if the user is authenticated successfull
+	 */
 	public boolean isUserLoggedIn() {
 		//TODO: Implement!
 		return true;
 	}
 	
+	/**
+	 * Get the user that is currently logged in into the device
+	 * @return the user as user object
+	 */
 	public User getUser() {
 		//TODO: Implement!
 		User dummy = new User();
@@ -36,6 +46,9 @@ public class SessionManager {
 		return dummy;
 	}
 	
+	/**
+	 * @return a list of all Users
+	 */
 	public List<User> getAllUsers() {
 		// Call the API to the the events
 		ApiConnector api = new ApiConnector();

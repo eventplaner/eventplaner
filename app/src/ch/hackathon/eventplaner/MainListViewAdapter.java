@@ -12,10 +12,18 @@ import android.widget.TextView;
 import ch.hackathon.eventplaner.data.Event;
 import ch.hackathon.eventplaner.logic.EventManager;
 
+/**
+ * Adapter for the List on the MainActivity (with the users events)
+ */
 public class MainListViewAdapter extends BaseAdapter {
-	private List<Event> eventlist;
-	private Activity activity;
-
+	private List<Event> eventlist; // events in the list
+	private Activity activity; // last activity the user opens
+	
+	/**
+	 * Create a new MainListViewAdapter object
+	 * @param currentActivity the activity that will call this methode
+	 * @param events a list of displayed events
+	 */
 	public MainListViewAdapter(Activity currentActivity, List<Event> events) {
 		super();
 		activity = currentActivity;
@@ -47,6 +55,9 @@ public class MainListViewAdapter extends BaseAdapter {
 	}
 
 	@Override
+	/**
+	 *  Render one row of the MainListView
+	 */
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater layoutInflator = activity.getLayoutInflater();
 		Event eventToRender = eventlist.get(position);
@@ -75,5 +86,4 @@ public class MainListViewAdapter extends BaseAdapter {
 		}
 		return convertView;
 	}
-
 }

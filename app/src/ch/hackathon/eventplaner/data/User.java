@@ -2,6 +2,9 @@ package ch.hackathon.eventplaner.data;
 
 import java.util.Date;
 
+/**
+ * An User from the API
+ */
 public class User {
 	private int id;
 	private String name;
@@ -11,6 +14,9 @@ public class User {
 	private boolean active;
 	private Date createDate;
 	private Date changeDate;
+	
+	
+	// Getter/Setter
 	
 	public int getId() {
 		return id;
@@ -60,5 +66,4 @@ public class User {
 	public void setChangeDate(Date changeDate) {
 		this.changeDate = changeDate;
 	}
-
 }

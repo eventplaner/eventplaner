@@ -120,7 +120,7 @@ public class EventDetailActivity extends Activity {
 				goingPeople++;
 			}
 		}
-		String participantText = goingPeople + " of " + participants.size() + "Participate";
+		String participantText = goingPeople + " of " + participants.size() + " Participants";
 		detailParticipantText.setText(participantText);
 	}
 
