@@ -7,7 +7,10 @@
         android:id="@+id/nameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name " />
+        android:text="Name "
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
      <ImageView
          android:id="@+id/statusImage"

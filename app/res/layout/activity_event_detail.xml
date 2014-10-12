@@ -9,12 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ch.hackathon.eventplaner.EventDetailActivity" >
 
-    <fragment
-	    android:id="@+id/map"
-	    android:name="com.google.android.gms.maps.MapFragment"
-	    android:layout_width="match_parent"
-	    android:layout_height="250dp" />
-    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,8 +22,8 @@
             android:text="EventName"
             android:textAppearance="?android:attr/textAppearanceLarge" >
 
-            <requestFocus />
-        </TextView>
+        	<requestFocus />
+    	</TextView>
 
         <ImageButton
             android:id="@+id/acceptButton"
@@ -42,8 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_action_cancel" />
+        
     </LinearLayout>
-
+    
     <TextView
         android:id="@+id/LocationText"
         android:layout_width="match_parent"
@@ -90,6 +85,7 @@
             android:layout_alignParentLeft="true"
             android:text="11 / 12 Participants"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </RelativeLayout>
 
     <ListView
