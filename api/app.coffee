@@ -9,6 +9,8 @@ app.use bodyParser.urlencoded({ extended: false })
 app.use orm.express "mysql://root:root@localhost/eventplaning", {
   define: (db, models, next) ->
 
+    db.settings.set('instance.cache', false)
+
     db.load './model/user', (err) ->
       if err then throw err
       models.user = db.models.user
@@ -29,6 +31,7 @@ app.use orm.express "mysql://root:root@localhost/eventplaning", {
 (require './controller/user')(router)
 
 app.use '/api', router
+
 app.listen 4000
 
 #process.on 'uncaughtException', (err) ->
