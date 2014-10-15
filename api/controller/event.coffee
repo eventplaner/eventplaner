@@ -22,12 +22,15 @@ module.exports = (router) ->
       createuser_id: req.body.createuser_id
     }
     if req.body.id > 0
+      # Update
       req.models.event.get req.body.id, (err, event) ->
         if err then rest.status(500).send err
+        reqEvent.createdate = event.createdate
         event.save reqEvent, (err, savedEvent) ->
           if err then rest.status(500).send err
           res.json savedEvent
     else
+      # Create
       req.models.event.create reqEvent, (err, event) ->
         if err then rest.status(500).send err
         res.json event
@@ -60,8 +63,7 @@ module.exports = (router) ->
   router.get '/event/:event_id/participant/:id/add', (req, res) ->
     req.models.participant.create {
       event_id: req.params.event_id,
-      user_id: req.params.id,
-      status: null
+      user_id: req.params.id
     }, (err, participant) ->
       if err then rest.status(500).send err
       res.json participant
@@ -86,10 +88,7 @@ module.exports = (router) ->
       event_id: req.params.event_id,
       user_id: req.params.id
     }).each((participant) ->
-      console.log (req.params.value is true)
-      console.log (typeof (req.params.value is true))
-      participant.status = (req.params.value is true)
-      #participants.push participant
+      participant.status = JSON.parse req.params.value
     ).save (err) ->
       if err
         rest.status(500).send err

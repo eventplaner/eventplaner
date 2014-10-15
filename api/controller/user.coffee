@@ -26,12 +26,15 @@ module.exports = (router) ->
       changedate: new Date()
     }
     if req.body.id > 0
+      # Update
       req.models.user.get req.body.id, (err, user) ->
         if err then rest.status(500).send err
+        reqUser.createdate = user.createdate
         user.save reqUser, (err, savedUser) ->
           if err then rest.status(500).send err
           res.json savedUser
     else
+      # Insert
       req.models.user.create reqUser, (err, user) ->
         if err then rest.status(500).send err
         res.json user
