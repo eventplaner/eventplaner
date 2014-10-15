@@ -6,7 +6,7 @@ router = express.Router()
 
 app.use bodyParser.urlencoded({ extended: false })
 
-app.use orm.express "mysql://root:root@localhost/eventplaning", {
+app.use orm.express "mysql://root:root@localhost/eventplaning?debug=true", {
   define: (db, models, next) ->
 
     db.settings.set('instance.cache', false)

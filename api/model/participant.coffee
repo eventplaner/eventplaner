@@ -1,7 +1,10 @@
 module.exports = (db, next) ->
   db.define 'participant', {
     id: { type: 'number', key: true },
-    status: { type: "boolean", defaultValue: null }
+    status: {
+      type: "boolean",
+      defaultValue: undefined
+    }
   }
 
   db.models.participant.hasOne 'user', db.models.user, {
