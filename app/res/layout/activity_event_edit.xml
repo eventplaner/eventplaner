@@ -9,10 +9,18 @@
     tools:context="ch.hackathon.eventplaner.EventEditActivity"
     android:orientation="vertical" >
 
+    
+    
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
+        
+        <fragment
+          android:id="@+id/map"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:name="com.google.android.gms.maps.MapFragment"/>
         
         <EditText
             android:id="@+id/EventNameText"

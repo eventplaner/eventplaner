@@ -60,7 +60,6 @@ public class EventEditActivity extends Activity {
 				@Override
 				public void onClick(View v) {
 					 DialogFragment datepickerfragment = new DatePickerFragment();
-					 ((DatePickerFragment) datepickerfragment).setDatafieldRessource(R.id.EndDateButton);
 					 datepickerfragment.show(getFragmentManager(), "datePicker");
 				}
 			});
